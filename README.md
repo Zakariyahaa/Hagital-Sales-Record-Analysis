@@ -429,16 +429,6 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
 ---
 
 ## 🧾 Results and Key Findings
-1. **Sales Growth**: Hagital Store saw consistent growth in sales and profits from 2014 to 2017, with a peak in 2017.
-2. **Total Actual Revenue**: $9.89M total revenue with significant customer and product concentration
-3. **Total Profit**: $286.4K, indicating moderate margin; potential pricing optimization needed
-4. **Product Performance**: Technology and Office Supplies were the most profitable categories, while tables consistently underperformed, incurring a $-17,725.48 loss.
-5. **Regional Dominance**: The Central region outperformed others in profit contribution, despite all data being from the West region (California).
-6. **Team Performance**: The Organic team, led by Morris Garcia, was the top performer, while the Charlie team lagged.
-7. **Seasonal Trends**: November and December were the strongest months, indicating a holiday sales boost.
-8. **Shipping Efficiency**: Standard Class shipping was the most cost-effective, balancing speed and cost.
-9. **Customer Base**: Top 10 customers drive a disproportionately large share of sales
-
 1. **Robust Overall Growth (2014–2017)**  
    - Revenue grew from \$484 K (2014) to \$733 K (2017) (+51.4%).  
    - Profit grew even faster (+88.7%), indicating gradual margin improvement.  
@@ -474,25 +464,6 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
 ---
 
 ## ✅ Recommendations
-1. **Optimize Product Offerings**:
-   - Discontinue or reevaluate the bookcase sub-category due to consistent losses. Focus on high-profit categories like Technology and Office Supplies.
-   - Promote top-selling products like staple envelopes and Canon printers through targeted marketing.
-2. **Regional Strategy**:
-   - Expand operations in the Central region, which shows the highest profit contribution, while maintaining a strong presence in California.
-   - Investigate why West region profits are lower despite high sales volume.
-3. **Sales Team Improvement**:
-   - Provide additional training or incentives to the Charlie team to improve performance.
-   - Replicate the Organic team's strategies (e.g., led by Morris Garcia) across other teams.
-4. **Seasonal Marketing**:
-   - Increase marketing efforts in Q4 (November and December) to capitalize on holiday sales trends.
-   - Offer promotions in slower months (e.g., January, February) to balance yearly sales.
-5. **Shipping Optimization**:
-   - Encourage the use of Standard Class shipping for cost efficiency while maintaining customer satisfaction.
-   - Explore faster shipping options for high-value orders to improve customer experience.
-6. **Customer Engagement**:
-   - Build loyalty programs for top customers like Tamara Chand to retain high-value clients.
-   - Target the Consumer segment with tailored promotions, as they drive the majority of sales.
----
 1. **Reevaluate Furniture Product Strategy**  
    - Renegotiate with furniture vendors to secure better COGS (cost of goods sold).  
    - Introduce adjustable freight fees (or pass through shipping surcharges) to protect margins.  
@@ -526,11 +497,26 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
 ---
 
 ## ⚠️ Limitations
-1. **Geographic Scope**: The dataset only includes sales from the West region (California), limiting insights into other regions' performance.
-2. **Time Frame**: Data only spans 2014–2017, missing more recent trends that could affect recommendations.
-3. **Granularity**: Lack of customer demographic data (e.g., age, gender) limits deeper customer segmentation.
-4. **Lack of External Factors**: No integration of economic or seasonal variables
-5. **Missing Customer Feedback**: No sentiment data or customer satisfaction metrics
+1. **Timeframe Restricted to 2014–2017**  
+   - No data beyond 2017 → unable to assess post-2017 trends, market shifts, or impacts of new competitors.  
+
+2. **Geographic Granularity Limited to State Level**  
+   - While we have city‐level fields, the map analyses focus on states and regions. More granular ZIP‐ or DMA‐level insight (customer clustering) is possible but not covered here.
+
+3. **No Customer Transaction Cost Data**  
+   - We lack direct COGS per product line; profit is only “Revenue – Sales Return – Discount” but does not account for warehousing or marketing spend.  
+   - True net margins (after overhead, marketing, storage fees) would be lower.
+
+4. **Single Data Source (Excel)**  
+   - No cross‐referencing with external BI tools or ERP logs.  
+   - Returns data (if any) are embedded in negative‐profit line items but not separately tracked.
+
+5. **Staff Details Only at Rep/Team Level**  
+   - We do not have granular “hours worked,” “call logs,” or “lead source” details to fully analyze rep productivity.
+     
+6. **Lack of External Factors**: No integration of economic or seasonal variables
+
+7. **Missing Customer Feedback**: No sentiment data or customer satisfaction metrics
 
 ---
 
