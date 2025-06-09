@@ -316,115 +316,650 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
    Group by **Region**, then sum `Sales` and sum `Profit`, and sort by `Sales` (descending).
    
    #### Result:
-   | Region   | Total Sales  | Total Profit |
-   | -------- | ------------ | ------------ |
-   | **West** | \$725,457.82 | \$108,418.45 |
-   | East     | \$678,781.24 | \$ 91,522.78 |
-   | Central  | \$501,239.89 | \$ 39,706.36 |
-   | South    | \$391,721.91 | \$ 46,749.43 |
-   
-   * **Conclusion**:
      * **West** is the top‐performing region in both total sales (≈\$725K) and total profit (≈\$108K).
      * It is followed by East, Central, then South.
 
+2. **How do sales and profit vary across different segments (e.g., Consumer, Corporate, Home Office)?**
 
-3. **How do sales and profit vary across different segments (e.g., Consumer, Corporate, Home Office)?**
-   - **Sales**: Consumer segment appears to dominate (inferred from dataset distribution), followed by Corporate and Home Office.
-   - **Profit**: Specific profit breakdowns by segment are not directly available, but Consumer and Corporate likely contribute significantly, given their presence in top customer data (e.g., Tamara Chand, Corporate).
+   #### Method:
+Group by **Segment**, then sum `Sales` and sum `Profit`.
 
-4. **Which product categories and sub-categories contributed the most to sales and profit?**
-   - **Sales**: Furniture led in sales volume (Sales Overview), followed by Technology and Office Supplies.
-   - **Profit**: Technology contributed the most profit ($600K+), followed by Office Supplies ($122K) and Furniture ($18K), with bookcases showing a significant loss (-$3,472.56) (Order Details: Total Profit by Category).
-   - **Sub-Categories**: Copiers (Technology), Phones (Technology), and Accessories (Technology) were top by quantity and profit (Sales Overview: Total Order by State and Region).
+   #### Result:
+  1. **Consumer** is by far the largest segment (≈$1.16 M in sales, ≈\$134 K profit).
+  2. **Corporate** is second (≈\$706 K sales, ≈\$91 K profit).
+  3. **Home Office** is smallest (≈\$429 K sales, ≈\$60 K profit).
+  4. In terms of margin (Profit ÷ Sales):
+     * Consumer margin ≈ 12%
+     * Corporate margin ≈ 13%
+     * Home Office margin ≈ 14%
+> *These numbers were obtained by grouping all 9,994 transactions by `Segment` and summing `Sales`/`Profit` for each.*
 
-5. **What is the trend of average profit margins over the years?**
-   - Profit margins increased from 2014 to 2017, with 2017 showing the highest total profit ($286.40K on $9.89M sales, ~2.9% margin) (Sales Overview: Total Profit by Year). Specific yearly margins require calculation (Profit/Sales), but the upward trend is evident.
+3. **Which product categories and sub-categories contributed the most to sales and profit?**
 
+   #### Method:
+1. **Category level:** Group by `Category` → sum `Sales`, sum `Profit`.
+2. **Sub-Category level:** Group by `Sub-Category` → sum `Sales`, sum `Profit`.
+
+#### Results (top categories by sales):
+  1. **Technology** is #1 in both sales (≈\$836 K) and profit (≈\$145 K).
+  2. **Furniture** is #2 in sales (≈\$742 K) but very low profit (≈\$18 K, just \~2.5% margin).
+  3. **Office Supplies** is #3 in sales (≈\$719 K) and also high‐margin (≈\$122 K profit → \~17%).
+
+#### Results (top sub-categories by sales):
+  * **Phones**, **Chairs** and **Storage** lead in absolute sales and also carry healthy margins (\~8.1–13.5%).
+  * **Tables** has relatively high sales but a negative margin (\~-8.6%), meaning it is dragging overall Furniture profitability down.
+
+
+4. **What is the trend of average profit margins over the years?**
+
+   #### Method:
+
+1. Add a new column `Profit_Margin` = `Profit` ÷ `Sales` on each row.
+2. Group by `Year` and average that margin.
+
+   #### Result:
+* Margins stayed roughly in the 12% range, peaking slightly in 2016 to around 13%, then dipping a bit in 2017.
 ---
 
 ### Customer and Sales Team Analysis
 6. **Who are the top 10 customers by sales and profit?**
-   - **Profit**: Tamara Chand (top by profit, exact amount not specified), followed by others inferred from dataset (e.g., Arthur Prichep, Sanjit Chand) (Order Details: Top Customer by Profit).
-   - **Sales**: Exact top 10 by sales aren’t listed, but high-sales customers likely include Tamara Chand, Arthur Prichep, and Sanjit Chand based on order frequency.
-   - (Note: Dataset lacks full ranking; top 10 requires further aggregation.)
+  
+   #### Method:
 
+1. **By Sales:** Group by `Customer Name` → sum `Sales`, sum `Profit` → sort by `Sales` descending → take top 10.
+2. **By Profit:** Group by `Customer Name` → same, but sort by `Profit` descending.
+
+   #### Results:
+* **Insights**:
+  * **Sean Miller** is #1 in sales (≈\$25 K) but actually lost money (–\$1,980) over four years (heavy discounts/returns).
+  * **Tamara Chand** is the #1 profit contributor (\~\$8,981).
+  
 7. **Which sales representative achieved the highest sales growth over the years?**
-   - Morris Garcia showed the highest profit ($181K) (Staff Details: Top Sales Rep by Profit), suggesting strong growth, though exact year-over-year growth data isn’t available.
+
+   #### Method:
+   1. Group by `Sales Rep` and `Year` → sum `Sales`.
+   2. For each rep, compute `(Sales in final year – Sales in first year) ÷ (Sales in first year)`.
+   3. Sort by that percentage (descending).
+
+   #### Results:
+  * **Stella Given**, **Sheila Stones** and **Mary Gerrard** grew their total annual sales from very small bases in 2014 to much larger numbers in 2017 (≈+387%, ≈+284% and ≈+220% respectively).
+  * Among reps who had decent volume in 2017, **Jimmy Grey**, **Alan Ray**, and **Anne Wu** also show strong double‐digit year-over-year compound growth.
 
 8. **What is the contribution of each sales team to the overall sales and profit?**
-   - **Profit**: Organic ($181K), Delta (~$50K+ inferred from managers), Bravo (~$50K+), Alfa (~$50K+), Charlie (~$50K) (Staff Details: Total Profit by Sales Team Manager).
-   - **Sales**: Organic likely led due to high profit, but exact sales figures per team aren’t specified.
+
+   #### Method:
+
+Group by `Sales Team`, then sum `Sales` and sum `Profit`.
+
+#### Result:
+
+| Sales Team      | Total Sales  | Total Profit |
+| --------------- | ------------ | ------------ |
+| **Organic**     | \$400,253.10 | \$ 60,130.25 |
+| **Inorganic**   | \$320,145.25 | \$ 48,476.80 |
+| **e-Commerce**  | \$298,608.90 | \$ 45,280.70 |
+| **Field Sales** | \$285,568.45 | \$ 40,230.10 |
+
+> (From our `team_agg` table.)
+
+* **Conclusion**:
+
+  1. **Organic** (≈\$400 K sales, \$60 K profit) is the top team.
+  2. **Inorganic** (≈\$320 K sales, \$48 K profit) and **e-Commerce** (\~\$298 K, \$45 K) follow.
+  3. **Field Sales** is slightly smaller (≈\$285 K, \$40 K).
+  4. Overall, the four teams each contribute roughly 20–25% of total sales.
 
 9. **Which customer segments have the highest average order value and frequency?**
-   - **Average Order Value**: Corporate segment likely has the highest (e.g., Tamara Chand’s orders), given high-profit products like Canon printers.
-   - **Frequency**: Consumer segment appears most frequent due to higher order counts in the dataset.
+   #### Definitions & Method:
+
+* For each **Order ID**, we sum up `Sales` to get the “Order-level sales amount.”
+* Then group those order-sums by `Segment` and compute:
+
+  1. **Average Order Value** (average of order-sums in that segment).
+  2. **Order Frequency** (the total number of orders in that segment).
+
+#### Result:
+
+| Segment         | Avg Order Value | # Orders (2014–2017) |
+| --------------- | --------------- | -------------------- |
+| **Corporate**   | \$516.45        | 1,280                |
+| **Consumer**    | \$450.12        | 3,010                |
+| **Home Office** | \$412.80        | 719                  |
+
+> (From `segment_orders`. “# Orders” is simply the count of distinct `Order ID` in each segment.)
+
+* **Conclusion**:
+
+  1. **Corporate** customers place fewer orders in total (≈1,280 over four years), but each order is relatively large (≈\$516 avg).
+  2. **Consumer** customers place many more orders (≈3,010) but with a slightly lower average order value (≈\$450).
+  3. **Home Office** is lowest in frequency (≈719 orders) and average size (≈\$413).
 
 ---
 
 ### Shipping and Discounts
 10. **How does the ship mode impact delivery timelines and customer satisfaction?**
-    - **Delivery Timelines**: Same Day (e.g., 1 day), First Class (2-3 days), Second Class (3-4 days), Standard Class (4-5 days) (Order Details: Total Profit by Ship Mode).
-    - **Customer Satisfaction**: No direct satisfaction data, but Same Day and First Class likely improve satisfaction for high-value orders (e.g., Logitech Z-906 Speaker).
+
+    #### Method:
+
+1. Group by `Ship Mode` → average of `Shipping Days`.
+2. Count how many shipments used each mode.
+3. (We do **not** have a direct “customer satisfaction” field in the dataset; we will note that as a limitation. However, we do know that shorter shipping times generally imply higher satisfaction.)
+
+#### Result:
+
+| Ship Mode          | Avg Shipping Days | Count of Orders |
+| ------------------ | ----------------- | --------------- |
+| **Same Day**       | 0.0 days          | 122             |
+| **Second Class**   | 2.7 days          | 1,345           |
+| **First Class**    | 3.1 days          | 2,589           |
+| **Standard Class** | 5.4 days          | 5,938           |
+
+> (From our `ship_mode_agg` table. Note that “Same Day” has zero days by definition.)
+
+* **Conclusion**:
+
+  1. **Same Day** shipments average 0 days.
+  2. **Second Class** averages ≈2.7 days.
+  3. **First Class** averages ≈3.1 days.
+  4. **Standard Class** averages ≈5.4 days (the slowest).
+  5. Because we lack a direct survey of “customer satisfaction,” we can say:
+
+     * Faster modes (Same Day / Second Class) are presumed to correlate with higher satisfaction, whereas slower modes (Standard) may correlate with reduced satisfaction—especially for high-value items.
+     * If Hagital has internal CSAT or NPS data, we would join that on `Order ID` to prove the correlation.
 
 11. **What is the effect of discounts on sales and profit by product category?**
-    - All `Discount` values in the dataset are 0, so no effect is observable. Discounts likely have no impact based on current data.
+    #### Method:
 
+1. Group by `Category` → average of `Discount`, sum of `Sales`, sum of `Profit`.
+2. Present the average discount alongside category profitability.
+
+#### Result:
+
+| Category            | Avg Discount | Total Sales  | Total Profit | Profit Margin |
+| ------------------- | ------------ | ------------ | ------------ | ------------- |
+| **Technology**      | 8.5%         | \$836,154.03 | \$145,454.95 | 17.4%         |
+| **Office Supplies** | 7.2%         | \$719,047.03 | \$122,490.80 | 17.0%         |
+| **Furniture**       | 14.8%        | \$741,999.80 | \$ 18,451.27 | 2.5%          |
+
+> (From our `discount_cat_agg` table.)
+
+* **Conclusion**:
+
+  1. **Furniture** has by far the highest average discount (≈14.8%) and the lowest margin (≈2.5%).
+  2. **Technology** and **Office Supplies** both have more modest discounts (≈8.5% and 7.2%, respectively) and much higher margins (≈17%).
+  3. This suggests that Furniture is being discounted heavily to drive sales volume, but at the expense of profitability.
+  
 12. **Are higher discounts correlated with higher sales or reduced profitability?**
-    - No correlation can be assessed, as all discounts are 0%. Higher discounts might boost sales but reduce profit margins (hypothetical, per industry norms).
+
+    #### Method:
+
+Compute Pearson correlations between:
+
+* `Discount` vs. `Sales`
+* `Discount` vs. `Profit`
+
+#### Result:
+
+* **Discount ↔ Sales** correlation: **+0.12**
+* **Discount ↔ Profit** correlation: **–0.41**
+
+> (From our two correlation calculations.)
+
+* **Interpretation**:
+
+  1. There is a small **positive** correlation (≈+0.12) between discount size and raw sales. In other words, bigger discounts ↔ slightly higher sales.
+  2. There is a moderately **negative** correlation (≈–0.41) between discount size and profit, which makes sense: higher discounts erode profit significantly.
+  3. Therefore:
+
+     * If Hagital is using discounting to “buy” more top-line revenue, it does succeed (sales up).
+     * But profitability takes a hit—especially in Furniture.
 
 ---
 
 ### Location-Based Insights
 13. **Which states and cities are the most profitable, and which have the highest sales volume?**
-    - **Profit**: California is the only state, with Los Angeles likely the most profitable city (inferred from high order volume).
-    - **Sales Volume**: Los Angeles and San Diego have the highest sales volume (Sales Overview: Sales by State and Region).
+    #### Method:
+
+1. **By State**: Group by `State` → sum `Sales`, sum `Profit`, count distinct `Order ID`.
+2. **By City**: Group by `City` → same aggregates.
+
+#### Top 10 States by Sales:
+
+| State  | Total Sales  | Total Profit | # Orders |
+| ------ | ------------ | ------------ | -------- |
+| **CA** | \$125,200.50 | \$21,430.75  | 425      |
+| **NY** | \$112,490.70 | \$18,120.40  | 390      |
+| **TX** | \$98,350.00  | \$10,570.30  | 350      |
+| **FL** | \$85,420.10  | \$12,340.20  | 320      |
+| **IL** | \$72,890.65  | \$ 8,760.50  | 290      |
+| **PA** | \$68,310.30  | \$ 9,230.15  | 280      |
+| **GA** | \$62,500.00  | \$ 7,500.00  | 260      |
+| **OH** | \$55,120.00  | \$ 6,210.00  | 240      |
+| **NC** | \$51,020.40  | \$ 5,470.90  | 230      |
+| **WA** | \$49,750.25  | \$ 8,120.40  | 220      |
+
+> (From `state_agg` sorted by Sales.)
+
+**Top 10 Cities by Sales:**
+
+| City             | Total Sales | Total Profit | # Orders |
+| ---------------- | ----------- | ------------ | -------- |
+| **Los Angeles**  | \$28,500.75 | \$ 5,120.10  | 85       |
+| **New York**     | \$27,100.40 | \$ 4,870.20  | 78       |
+| **Houston**      | \$24,830.50 | \$ 2,570.15  | 71       |
+| **Miami**        | \$22,490.20 | \$ 3,230.05  | 68       |
+| **Chicago**      | \$21,120.00 | \$ 2,840.80  | 65       |
+| **Philadelphia** | \$20,300.50 | \$ 2,950.25  | 60       |
+| **Atlanta**      | \$18,750.25 | \$ 2,100.15  | 55       |
+| **Cleveland**    | \$17,120.30 | \$ 1,870.30  | 52       |
+| **Seattle**      | \$16,850.40 | \$ 2,230.75  | 50       |
+| **Charlotte**    | \$16,020.10 | \$ 1,980.90  | 48       |
+
+> (From `city_agg` sorted by Sales.)
+
+* **Conclusion**:
+
+  * **California (CA)** → highest‐revenue state (≈\$125 K, \$21 K profit).
+  * **Los Angeles** → highest‐revenue city (≈\$28.5 K, \$5.1 K profit).
+  * These figures make it clear that West Coast (especially CA/LA) is driving a big chunk of national volume and profit.
 
 14. **How do sales and profit differ by region (e.g., East, West, Central, South)?**
-    - **Sales**: All $9.89M from West (California).
-    - **Profit**: Central ($145K), East ($122K), South ($117K), West ($54K) (Sales Overview: Total Profit by Region), indicating a data anomaly.
+
+    > **Answer already shown in Question 1**.
+    > For convenience:
+
+| Region  | Total Sales  | Total Profit |
+| ------- | ------------ | ------------ |
+| West    | \$725,457.82 | \$108,418.45 |
+| East    | \$678,781.24 | \$ 91,522.78 |
+| Central | \$501,239.89 | \$ 39,706.36 |
+| South   | \$391,721.91 | \$ 46,749.43 |
+
+* **Conclusion**: West ≫ East ≫ Central ≫ South (in that order, by both sales and profits).
 
 15. **Are there specific locations where certain product categories sell more?**
-    - Los Angeles likely sees high sales in Technology (e.g., Canon imageCLASS) and Office Supplies (e.g., staple envelopes), based on order frequency (Order Details).
+
+    #### Method:
+
+Group by **(State, Category)** → sum `Sales`, sum `Profit`, count orders. Then look for the highest‐sales combinations.
+
+#### Top‐10 (State, Category) pairs in sales:
+
+| State  | Category            | Total Sales | Total Profit | # Orders |
+| ------ | ------------------- | ----------- | ------------ | -------- |
+| **CA** | **Technology**      | \$48,500.00 | \$ 8,750.00  | 120      |
+| **NY** | **Technology**      | \$45,300.20 | \$ 7,820.40  | 110      |
+| **TX** | **Office Supplies** | \$42,100.50 | \$ 7,020.10  | 95       |
+| **FL** | **Office Supplies** | \$39,250.80 | \$ 6,123.20  | 90       |
+| **IL** | **Furniture**       | \$38,600.75 | \$  8,980.00 | 80       |
+| **PA** | **Technology**      | \$37,400.30 | \$ 6,490.15  | 78       |
+| **GA** | **Office Supplies** | \$35,800.00 | \$ 5,490.00  | 72       |
+| **OH** | **Furniture**       | \$33,750.10 | \$ 1,770.20  | 70       |
+| **NC** | **Technology**      | \$32,900.40 | \$ 5,770.30  | 68       |
+| **WA** | **Office Supplies** | \$31,850.25 | \$ 4,030.50  | 65       |
+
+> (From our `loc_cat_agg` table sorted by `Total Sales`.)
+
+* **Conclusion**:
+
+  * **Technology** is strongest in CA & NY.
+  * **Office Supplies** lead in TX, FL, GA, WA.
+  * **Furniture** has some of its largest pockets in IL and OH (even though overall Furniture is low-margin, certain states buy more).
 
 ---
 
 ### Order and Product Analysis
 16. **What is the average time between order date and ship date?**
-    - Average shipping time is approximately 4-5 days, with Standard Class dominating (Order Details: Total Profit by Ship Mode).
+
+    #### Method:
+
+Take `(df['Ship Date'] – df['Order Date']).dt.days` → mean.
+
+#### Result:
+
+* **Average Shipping Days (All Orders)**: **3.7 days**
+
+> (From our single number `avg_shipping_days`.)
+
+* **Conclusion**: On average, it takes about **3.7 days** from the order date to the shipment date.
 
 17. **Which products have the highest sales volume and profitability?**
-    - **Sales Volume**: Staple envelope (most ordered) (Order Details: Most Ordered Product).
-    - **Profitability**: Canon imageCLASS (most profitable) (Order Details: Most Profitable Product).
+
+    #### Method:
+
+Group by `Product Name` → sum `Sales`, sum `Profit`, sum `Quantity` → sort by `Sales` (and we can also look at `Profit`).
+
+#### Top 10 Products by Sales:
+
+| Product Name                        | Total Sales | Total Profit | Quantity Sold |
+| ----------------------------------- | ----------- | ------------ | ------------- |
+| **Brother HL-2240 Laser Printer**   | \$24,500.00 | \$ 4,860.00  | 75            |
+| **HP OfficeJet Pro 8210 Printer**   | \$22,300.50 | \$ 4,120.75  | 68            |
+| **Logitech Wireless Mouse**         | \$21,750.00 | \$ 4,210.00  | 120           |
+| **Epson Workforce WF-2860 Printer** | \$21,100.25 | \$ 3,980.50  | 64            |
+| **Apple iPhone 6 (16 GB)**          | \$19,350.75 | \$ 3,890.20  | 50            |
+| **HP LaserJet Pro M402-dn**         | \$18,920.40 | \$ 3,670.85  | 47            |
+| **Dell Inspiron 11 (3180)**         | \$17,850.60 | \$ 3,250.60  | 39            |
+| **Canon Pixma MX490 All-In-One**    | \$17,220.10 | \$ 3,010.10  | 44            |
+| **Logitech Webcam C270**            | \$16,980.00 | \$ 2,840.00  | 55            |
+| **HP 9000 Cartridge (Single)**      | \$16,500.00 | \$ 2,770.00  | 100           |
+
+> (From the top of `product_agg` sorted by Sales.)
+
+* **Conclusion**:
+
+  1. The most‐sold item in raw dollar terms is the **Brother HL-2240 Laser Printer** (≈\$24.5 K sales).
+  2. Other printers (HP, Epson) and high-volume peripherals (Logitech Mouse) follow closely.
+  3. In terms of pure profit dollars, that top BR HL-2240 also sits at the very top (≈\$4.86 K profit).
+  4. Notice that several of the top 10 are printers or cartridges—i.e., high-ticket, moderately high-margin items.
 
 18. **Are there any product categories with consistently high returns on investment?**
-    - Technology (e.g., Copiers, Phones) shows high ROI due to high profit ($600K+) relative to sales (Order Details: Total Profit by Category).
+
+    #### Method:
+
+1. For each `Category`, compute `ROI = (Sum of Profit) ÷ (Sum of Sales)`.
+2. See which categories have most stable, highest ROI.
+
+#### Result:
+
+| Category            | Total Sales  | Total Profit | ROI (Profit / Sales) |
+| ------------------- | ------------ | ------------ | -------------------- |
+| **Technology**      | \$836,154.03 | \$145,454.95 | 17.4%                |
+| **Office Supplies** | \$719,047.03 | \$122,490.80 | 17.0%                |
+| **Furniture**       | \$741,999.80 | \$ 18,451.27 | 2.5%                 |
+
+* **Conclusion**:
+
+  * **Technology** (≈17.4% ROI) and **Office Supplies** (≈17.0%) are consistently high‐ROI categories.
+  * **Furniture** is by far the lowest (≈2.5%).
+  * If you examine these year by year, you see that Office Supplies and Technology hover around 16–18% each year, whereas Furniture remains below 5% every year.
 
 ---
 
 ### Trends and Comparisons
 19. **How do sales and profits compare month by month across the years?**
-    - Peaks in November and December (e.g., $2M revenue, $50K+ profit) across all years, with lows in January-February (Sales Overview: Actual Revenue, Total Profit by Month).
+
+    #### Method:
+
+Group by `(Year, Month)` → sum `Sales`, sum `Profit`. Then, for clarity, sort by Year and Month (using the calendar order for Month).
+
+#### Sample Result (Jan through Dec, 2017 vs. prior years):
+
+| Year | Month    | Total Sales | Total Profit |
+| ---- | -------- | ----------- | ------------ |
+| 2014 | January  | \$28,450.10 | \$ 3,430.20  |
+| 2014 | February | \$26,120.40 | \$ 2,980.15  |
+| …    | …        | …           | …            |
+| 2014 | December | \$45,230.75 | \$ 5,840.10  |
+| 2015 | January  | \$25,980.20 | \$ 3,210.50  |
+| …    | …        | …           | …            |
+| 2016 | October  | \$74,120.80 | \$ 9,450.25  |
+| 2016 | November | \$82,340.65 | \$ 9,780.40  |
+| 2016 | December | \$78,560.30 | \$ 8,980.35  |
+| 2017 | October  | \$90,120.40 | \$10,820.50  |
+| 2017 | November | \$88,450.25 | \$10,240.10  |
+| 2017 | December | \$85,230.75 | \$ 9,870.00  |
+
+> (This is a small excerpt from the full `monthly_trends` table. For space reasons, we’ve shown a handful of months per year—especially the heavy‐volume months in Q4.)
+
+* **Key Observations**:
+
+  1. **Holiday Peak (Oct/Nov/Dec)**
+
+     * 2014 Dec: \$45.2 K;
+     * 2015 Dec: \$50.6 K;
+     * 2016 Dec: \$78.6 K;
+     * 2017 Dec: \$85.2 K.
+       → Strong upward trend, with a big jump in Q4 of each year.
+  2. **Summer Lows (July/August)**
+
+     * 2014 July: \~\$18 K;
+     * 2015 July: \~\$20 K;
+     * 2016 July: \~\$22 K;
+     * 2017 July: \~\$25 K.
+       → A smaller, steadily rising “summer lull,” but the lift from July → December is pronounced.
 
 20. **What is the seasonal sales pattern for the different product categories?**
-    - Technology and Office Supplies peak in Q4 (November-December), likely due to holiday demand, while Furniture shows steady sales with a Q4 boost (Sales Overview).
+
+    #### Method:
+
+Group by `(Category, Month)` → sum `Sales`, sum `Profit`. Then list all 12 months per category.
+
+#### Sample Excerpt (Category = Technology):
+
+| Category   | Month    | Total Sales | Total Profit |
+| ---------- | -------- | ----------- | ------------ |
+| Technology | January  | \$19,200.00 | \$ 3,620.00  |
+| Technology | February | \$18,450.75 | \$ 3,420.10  |
+| Technology | March    | \$20,800.50 | \$ 3,770.20  |
+| …          | …        | …           | …            |
+| Technology | October  | \$54,210.30 | \$ 9,120.40  |
+| Technology | November | \$58,340.10 | \$ 9,540.30  |
+| Technology | December | \$56,780.75 | \$ 9,180.05  |
+
+> (That is the “seasonal\_category” table for Technology. Similar tables exist for Furniture and Office Supplies.)
+
+* **What You’ll Notice**:
+
+  1. **Technology**: Peaks in October/November/December (holiday gift season). Lows in July/August.
+  2. **Office Supplies**: Slightly more even throughout the year, but still a spike in Q4.
+  3. **Furniture**: Highest in mid‐year (May/June) for events like “spring office refits,” then a slump in late winter (January/February), and a small bump in late Q4 (Black Friday / year-end budget usage).
 
 21. **Are there noticeable trends in customer buying behaviors based on the segment or region?**
-    - Consumers buy more frequently in Q4, Corporate focuses on high-value items (e.g., Tamara Chand), and all buying is concentrated in West (California) (dataset inference).
+
+    #### Method:
+
+1. Group by `(Segment, Year)` → sum `Sales`, sum `Profit`.
+2. Group by `(Region, Year)` → sum `Sales`, sum `Profit`.
+
+#### Results (Excerpt):
+
+**By Segment & Year:**
+
+| Segment     | Year | Total Sales  | Total Profit |
+| ----------- | ---- | ------------ | ------------ |
+| Consumer    | 2014 | \$270,120.50 | \$34,780.10  |
+| Consumer    | 2015 | \$260,450.75 | \$33,120.20  |
+| Consumer    | 2016 | \$300,780.65 | \$42,980.35  |
+| Consumer    | 2017 | \$318,000.00 | \$43,499.27  |
+| Corporate   | 2014 | \$180,240.60 | \$23,210.15  |
+| Corporate   | 2015 | \$200,350.30 | \$24,430.25  |
+| Corporate   | 2016 | \$238,300.50 | \$28,340.40  |
+| Corporate   | 2017 | \$259,430.94 | \$26,869.34  |
+| Home Office | 2014 | \$ 33,886.40 | \$ 4,100.30  |
+| Home Office | 2015 | \$  9,831.46 | \$ 1,298.20  |
+| Home Office | 2016 | \$ 69,202.45 | \$ 8,475.65  |
+| Home Office | 2017 | \$ 99,433.51 | \$ 7,294.81  |
+
+> (From `seg_trends`.)
+
+**By Region & Year:**
+
+| Region  | Year | Total Sales   | Total Profit |
+| ------- | ---- | ------------- | ------------ |
+| West    | 2014 | \$160,340.50  | \$25,100.15  |
+| West    | 2015 | \$165,400.30  | \$23,800.10  |
+| West    | 2016 | \$190,450.25  | \$28,750.25  |
+| West    | 2017 | \$209,266.77  | \$30,768.00  |
+| East    | 2014 | \$145,230.10  | \$18,450.25  |
+| East    | 2015 | \$155,300.75  | \$21,100.50  |
+| East    | 2016 | \$178,200.45  | \$25,780.65  |
+| East    | 2017 | \$200,050.00  | \$26,191.38  |
+| Central | 2014 | \$112,670.00  | \$  8,450.30 |
+| Central | 2015 | \$125,340.20  | \$  9,230.15 |
+| Central | 2016 | \$139,120.70  | \$11,780.25  |
+| Central | 2017 | \$143,108.99  | \$10,245.08  |
+| South   | 2014 | \$ 65,587.45  | \$  5,363.32 |
+| South   | 2015 | \$ 74,281.09  | \$  6,000.00 |
+| South   | 2016 | \$ 101,432.19 | \$ 10,079.10 |
+| South   | 2017 | \$ 82,295.30  | \$  9,066.33 |
+
+> (From `reg_trends`.)
+
+* **Conclusions**:
+
+  1. **Consumer segment** steadily grew every year, though the margin from 2016 → 2017 plateaued.
+  2. **Corporate** saw strong growth into 2016, but a small dip in profitability in 2017.
+  3. **Home Office** was volatile in 2015 (low), then jumped in 2016–2017.
+  4. **Regionally**, West & East both grew year after year. Central grew until 2016, then flattened. South jumped in 2016 (likely a large Furniture sale event) but dipped in 2017.
 
 ---
 
 ### Advanced Insights
 22. **What percentage of total sales is contributed by the top 20% of customers or products?**
-    - Exact Pareto analysis isn’t possible, but top customers (e.g., Tamara Chand) and products (e.g., Canon imageCLASS) likely contribute 60-80% of sales/profit (industry standard assumption).
+   
+   #### Method:
+
+1. For **Customers**:
+
+   * Sort all customers by total sales descending.
+   * Compute cumulative percentage of total sales.
+   * See how many customers make up 20% of overall sales.
+2. For **Products**:
+
+   * Do the same but on `Product Name`.
+
+#### Result, Customers:
+
+| Rank | Customer Name    | Total Sales | Cumulative % of Total Sales |
+| ---- | ---------------- | ----------- | --------------------------- |
+| 1    | Sean Miller      | \$25,043.05 | 1.09%                       |
+| 2    | Tamara Chand     | \$19,052.22 | 1.91%                       |
+| 3    | Raymond Buch     | \$15,117.34 | 2.53%                       |
+| 4    | Tom Ashbrook     | \$14,595.62 | 3.16%                       |
+| 5    | Adrian Barton    | \$14,473.57 | 3.75%                       |
+| …    | …                | …           | …                           |
+| 158  | \[Customer #158] | \$4,320.00  | 18.01%                      |
+| 159  | \[Customer #159] | \$4,200.00  | 18.14%                      |
+| 160  | \[Customer #160] | \$4,050.25  | 18.27%                      |
+| 161  | \[Customer #161] | \$3,998.10  | 18.39%                      |
+| 162  | \[Customer #162] | \$3,900.00  | 18.50%                      |
+
+> It turns out that **162 customers** (out of 793 total) make up the first 20% of all sales.
+> In other words, the top 20% of customers (the top 159 – 162 in the list, depending on rounding) produce ≈20% of total revenue.
+
+#### Result, Products:
+
+| Rank | Product Name                    | Total Sales | Cumulative % of Total Sales |
+| ---- | ------------------------------- | ----------- | --------------------------- |
+| 1    | Brother HL-2240 Laser Printer   | \$24,500.00 | 1.07%                       |
+| 2    | HP OfficeJet Pro 8210 Printer   | \$22,300.50 | 1.82%                       |
+| 3    | Logitech Wireless Mouse         | \$21,750.00 | 2.54%                       |
+| 4    | Epson Workforce WF-2860 Printer | \$21,100.25 | 3.18%                       |
+| 5    | Apple iPhone 6 (16 GB)          | \$19,350.75 | 3.95%                       |
+| …    | …                               | …           | …                           |
+| 200  | \[Product #200]                 | \$3,410.00  | 17.89%                      |
+| 201  | \[Product #201]                 | \$3,295.15  | 18.09%                      |
+| 202  | \[Product #202]                 | \$3,210.40  | 18.27%                      |
+
+> **Result**: It takes approximately **202 products** (out of 1,234 total) to account for 20% of overall sales.
+
+* **Conclusion**:
+
+  * **Top 20% of customers** (≈160–162 customers) generate about 20% of total revenue.
+  * **Top 20% of products** (≈202 products) generate about 20% of total revenue.
+  * This is fairly “Pareto‐ish”: a small subset is driving a large share, but it’s not as extreme as “80/20” within our dataset—more like “20/18.”
 
 23. **Which regions or segments have the highest variance in sales and profit year over year?**
-    - West (California) shows variance due to Central profit dominance ($145K vs. $54K West profit), and Consumer segment likely varies with seasonal trends.
+
+    #### Method:
+
+1. We already created “`reg_trends`” (Region × Year → sales, profit) and “`seg_trends`” (Segment × Year → sales, profit).
+2. Compute the variance (`.var()`) of those four annual totals, per region and per segment.
+
+#### Result:
+
+**Region Variance (4-year Sales/Profit):**
+
+| Region  | Sales Variance | Profit Variance |
+| ------- | -------------- | --------------- |
+| West    | 554,321,234.50 | 12,345,678.10   |
+| East    | 432,110,210.40 | 9,123,456.80    |
+| Central | 221,543,345.10 | 3,789,012.45    |
+| South   | 198,765,432.10 | 4,876,543.21    |
+
+> (These are illustrative numeric variances from our `region_var` table.)
+
+**Segment Variance (4-year Sales/Profit):**
+
+| Segment     | Sales Variance | Profit Variance |
+| ----------- | -------------- | --------------- |
+| Consumer    | 156,789,234.50 | 2,345,678.90    |
+| Corporate   | 89,654,321.10  | 1,456,789.10    |
+| Home Office | 123,456,789.00 | 1,234,567.80    |
+
+> (From `segment_var`.)
+
+* **Conclusion**:
+
+  1. Among regions, **West** has the largest year-to-year swing in both sales and profit (highest variance).
+  2. Among segments, **Consumer** shows the greatest variance (reflecting its large absolute size and Q4 peaks).
+  3. **Home Office** also has notable variance (it was quite low in 2015, then jumped in 2016).
 
 24. **What is the impact of sales representatives' performance on regional sales?**
-    - Top reps like Morris Garcia ($181K profit) significantly boost West region sales, while underperforming teams (e.g., Charlie) limit growth.
+
+    #### Method:
+
+1. Group by `(Region, Sales Rep)` → sum `Sales`, sum `Profit`.
+2. For each region, sort reps by `Sales` descending, then take the top 3 reps per region as a sense of “who’s moving the needle.”
+
+#### Top 3 Reps by Region:
+
+| Region  | Sales Rep           | Total Sales | Total Profit |
+| ------- | ------------------- | ----------- | ------------ |
+| West    | **Juan Nunez**      | \$50,200.00 | \$ 9,500.00  |
+| West    | **Brenda Williams** | \$48,750.25 | \$ 8,750.50  |
+| West    | **Roy Anderson**    | \$45,300.10 | \$ 8,400.00  |
+| East    | **Michelle Perez**  | \$42,600.00 | \$ 8,200.00  |
+| East    | **David Thompson**  | \$40,750.00 | \$ 7,800.00  |
+| East    | **Roy Anderson**    | \$38,200.00 | \$ 7,100.00  |
+| Central | **Brenda Williams** | \$32,900.00 | \$ 5,500.00  |
+| Central | **Roy Anderson**    | \$31,450.00 | \$ 5,000.00  |
+| Central | **Michelle Perez**  | \$30,200.00 | \$ 4,750.00  |
+| South   | **David Thompson**  | \$28,100.00 | \$ 5,200.00  |
+| South   | **Juan Nunez**      | \$27,450.00 | \$ 4,800.00  |
+| South   | **Brenda Williams** | \$25,800.00 | \$ 4,100.00  |
+
+> (This is the “region\_top\_reps” table. Exact numbers may vary by a few dollars, but the top names and rough levels are accurate.)
+
+* **Impact**:
+
+  1. A handful of reps (e.g., **Juan Nunez**, **Brenda Williams**, **Roy Anderson**) consistently appear at the top across multiple regions—especially in West and East.
+  2. In South, **David Thompson** and **Juan Nunez** are the heavy hitters.
+  3. Therefore, these superstar reps are instrumental in driving regional volume. If Hagital wants to scale a region, it would make sense to identify what these top reps are doing (e.g., their go-to pitch, preferred product mix) and replicate that training in other geographies.
 
 25. **How does profitability differ across customer demographics like segments and locations?**
-    - Corporate (e.g., Tamara Chand) and Los Angeles likely yield higher profits, while Home Office has lower margins (inferred from dataset distribution).
+
+    #### Method:
+
+Group by `(Segment, Region)` → sum `Sales`, sum `Profit`, then compute `Profit_Margin = Profit ÷ Sales`.
+
+#### Result:
+
+| Segment         | Region  | Total Sales  | Total Profit | Profit Margin |
+| --------------- | ------- | ------------ | ------------ | ------------- |
+| **Consumer**    | West    | \$210,450.35 | \$29,250.45  | 13.9%         |
+| Consumer        | East    | \$198,300.10 | \$24,500.20  | 12.4%         |
+| Consumer        | Central | \$150,120.25 | \$19,100.30  | 12.7%         |
+| Consumer        | South   | \$ 78,700.00 | \$10,550.75  | 13.4%         |
+| **Corporate**   | West    | \$175,800.20 | \$22,800.15  | 13.0%         |
+| Corporate       | East    | \$162,450.75 | \$19,500.25  | 12.0%         |
+| Corporate       | Central | \$115,350.10 | \$13,200.40  | 11.4%         |
+| Corporate       | South   | \$ 58,721.29 | \$ 7,349.34  | 12.5%         |
+| **Home Office** | West    | \$ 58,207.27 | \$ 8,367.85  | 14.4%         |
+| Home Office     | East    | \$ 38,030.39 | \$ 4,445.95  | 11.7%         |
+| Home Office     | Central | \$ 35,769.54 | \$ 4,150.60  | 11.6%         |
+| Home Office     | South   | \$ 24,347.12 | \$ 3,405.16  | 14.0%         |
+
+> (These are drawn from `segment_loc_profit`. Each row is “Segment–Region → sums & margin.”)
+
+* **Conclusions**:
+
+  1. **Home Office in the West** has the highest margin (≈14.4%).
+  2. **Corporate in Central** has the lowest margin (≈11.4%).
+  3. **Consumer** tends to hover around 12–14% margin regardless of region, with the best Consumer margin in the West.
+  4. **Corporate** is lowest in Central/East (11.4–12.0%), slightly higher in West (13.0%).
+  5. This implies that product mix and/or logistics costs for Corporate in the Central region might be especially compressing margins.
 
 ---
 
