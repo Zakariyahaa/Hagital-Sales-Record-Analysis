@@ -322,43 +322,42 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
 2. **How do sales and profit vary across different segments (e.g., Consumer, Corporate, Home Office)?**
 
    #### Method:
-Group by **Segment**, then sum `Sales` and sum `Profit`.
+   Group by **Segment**, then sum `Sales` and sum `Profit`.
 
    #### Result:
-  1. **Consumer** is by far the largest segment (≈$1.16 M in sales, ≈\$134 K profit).
-  2. **Corporate** is second (≈\$706 K sales, ≈\$91 K profit).
-  3. **Home Office** is smallest (≈\$429 K sales, ≈\$60 K profit).
-  4. In terms of margin (Profit ÷ Sales):
-     * Consumer margin ≈ 12%
-     * Corporate margin ≈ 13%
-     * Home Office margin ≈ 14%
+     1. **Consumer** is by far the largest segment (≈$1.16 M in sales, ≈\$134 K profit).
+     2. **Corporate** is second (≈\$706 K sales, ≈\$91 K profit).
+     3. **Home Office** is smallest (≈\$429 K sales, ≈\$60 K profit).
+     4. In terms of margin (Profit ÷ Sales):
+        * Consumer margin ≈ 12%
+        * Corporate margin ≈ 13%   
+        * Home Office margin ≈ 14%
 > *These numbers were obtained by grouping all 9,994 transactions by `Segment` and summing `Sales`/`Profit` for each.*
 
 3. **Which product categories and sub-categories contributed the most to sales and profit?**
 
    #### Method:
-1. **Category level:** Group by `Category` → sum `Sales`, sum `Profit`.
-2. **Sub-Category level:** Group by `Sub-Category` → sum `Sales`, sum `Profit`.
+   1. **Category level:** Group by `Category` → sum `Sales`, sum `Profit`.
+   2. **Sub-Category level:** Group by `Sub-Category` → sum `Sales`, sum `Profit`.
 
-#### Results (top categories by sales):
-  1. **Technology** is #1 in both sales (≈\$836 K) and profit (≈\$145 K).
-  2. **Furniture** is #2 in sales (≈\$742 K) but very low profit (≈\$18 K, just \~2.5% margin).
-  3. **Office Supplies** is #3 in sales (≈\$719 K) and also high‐margin (≈\$122 K profit → \~17%).
+   #### Results (top categories by sales):
+   1. **Technology** is #1 in both sales (≈\$836 K) and profit (≈\$145 K).
+   2. **Furniture** is #2 in sales (≈\$742 K) but very low profit (≈\$18 K, just \~2.5% margin).
+   3. **Office Supplies** is #3 in sales (≈\$719 K) and also high‐margin (≈\$122 K profit → \~17%).
 
-#### Results (top sub-categories by sales):
-  * **Phones**, **Chairs** and **Storage** lead in absolute sales and also carry healthy margins (\~8.1–13.5%).
-  * **Tables** has relatively high sales but a negative margin (\~-8.6%), meaning it is dragging overall Furniture profitability down.
+   #### Results (top sub-categories by sales):
+   * **Phones**, **Chairs** and **Storage** lead in absolute sales and also carry healthy margins (\~8.1–13.5%).
+   * **Tables** has relatively high sales but a negative margin (\~-8.6%), meaning it is dragging overall Furniture profitability down.
 
 
 4. **What is the trend of average profit margins over the years?**
 
    #### Method:
-
-1. Add a new column `Profit_Margin` = `Profit` ÷ `Sales` on each row.
-2. Group by `Year` and average that margin.
+   1. Add a new column `Profit_Margin` = `Profit` ÷ `Sales` on each row.
+   2. Group by `Year` and average that margin.
 
    #### Result:
-* Margins stayed roughly in the 12% range, peaking slightly in 2016 to around 13%, then dipping a bit in 2017.
+   * Margins stayed roughly in the 12% range, peaking slightly in 2016 to around 13%, then dipping a bit in 2017.
 ---
 
 ### Customer and Sales Team Analysis
@@ -366,13 +365,13 @@ Group by **Segment**, then sum `Sales` and sum `Profit`.
   
    #### Method:
 
-1. **By Sales:** Group by `Customer Name` → sum `Sales`, sum `Profit` → sort by `Sales` descending → take top 10.
-2. **By Profit:** Group by `Customer Name` → same, but sort by `Profit` descending.
+   1. **By Sales:** Group by `Customer Name` → sum `Sales`, sum `Profit` → sort by `Sales` descending → take top 10.
+   2. **By Profit:** Group by `Customer Name` → same, but sort by `Profit` descending.
 
    #### Results:
-* **Insights**:
-  * **Sean Miller** is #1 in sales (≈\$25 K) but actually lost money (–\$1,980) over four years (heavy discounts/returns).
-  * **Tamara Chand** is the #1 profit contributor (\~\$8,981).
+   * **Insights**:
+     * **Sean Miller** is #1 in sales (≈\$25 K) but actually lost money (–\$1,980) over four years (heavy discounts/returns).
+     * **Tamara Chand** is the #1 profit contributor (\~\$8,981).
   
 7. **Which sales representative achieved the highest sales growth over the years?**
 
@@ -382,8 +381,8 @@ Group by **Segment**, then sum `Sales` and sum `Profit`.
    3. Sort by that percentage (descending).
 
    #### Results:
-  * **Stella Given**, **Sheila Stones** and **Mary Gerrard** grew their total annual sales from very small bases in 2014 to much larger numbers in 2017 (≈+387%, ≈+284% and ≈+220% respectively).
-  * Among reps who had decent volume in 2017, **Jimmy Grey**, **Alan Ray**, and **Anne Wu** also show strong double‐digit year-over-year compound growth.
+   * **Stella Given**, **Sheila Stones** and **Mary Gerrard** grew their total annual sales from very small bases in 2014 to much larger numbers in 2017 (≈+387%, ≈+284% and ≈+220% respectively).
+   * Among reps who had decent volume in 2017, **Jimmy Grey**, **Alan Ray**, and **Anne Wu** also show strong double‐digit year-over-year compound growth.
 
 8. **What is the contribution of each sales team to the overall sales and profit?**
 
