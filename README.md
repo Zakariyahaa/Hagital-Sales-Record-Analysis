@@ -391,9 +391,11 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
 
    ```
    * **Category level:** Group by `Category` - sum `Sales`, sum `Profit`.
+   
    ![categories](https://github.com/user-attachments/assets/0676d8c4-d897-45d6-9277-12b4421227df)
 
    * **Sub-Category level:** Group by `Sub-Category` - sum `Sales`, sum `Profit`.
+   
    ![subcategories](https://github.com/user-attachments/assets/a59883ea-c321-464c-9519-5057d5ed1f98)
 
    #### Results (top categories by sales):
@@ -428,7 +430,6 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
 6. **Who are the top 10 customers by sales and profit?**
   
    #### SQLQuery:
-
       ```sql
          -- 6. Top 10 Customers by Sales
          SELECT 
@@ -517,19 +518,19 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
       GROUP BY sales_team
       ORDER BY total_profit DESC;
       ```
-#### Result:
+   #### Result:
    ![Screenshot 2025-06-12 222850](https://github.com/user-attachments/assets/5dedc081-a9f5-4962-9a70-56e092735067)
    
    ![graph_visualiser-1749753959690](https://github.com/user-attachments/assets/493e0ede-71b5-4170-b061-faa9f28f8ab6)
    
-* **Conclusion**:
-  1. **Organic** ($1.4 M sales, $183 K profit) is the top team.
-  2. **Bravo** ($220 K sales, $34 K profit) and **Delta** (\~\$234 K, \$27 K) follow.
-  3. **Charlie** is slightly smaller ($235 K, $21 K).
-  4. Overall, the **Organic** teams contributed over 60% of total sales.
+   * **Conclusion**:
+     * **Organic** ($1.4 M sales, $183 K profit) is the top team.
+     * **Bravo** ($220 K sales, $34 K profit) and **Delta** (\~\$234 K, \$27 K) follow.
+     * **Charlie** is slightly smaller ($235 K, $21 K).
+     * Overall, the **Organic** teams contributed over 60% of total sales.
 
 9. **Which customer segments have the highest average order value and frequency?**
-   #### SQLQuery:
+      #### SQLQuery:
       ```
       -- 9. Segment with Highest Average Order Value and Frequency
       SELECT segment, 
@@ -539,17 +540,17 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
       GROUP BY segment;
       ```
 
-#### Result:
-   ![image](https://github.com/user-attachments/assets/c1fd6d74-adbf-41e3-a373-17a64482cc28)
+      #### Result:
+      ![image](https://github.com/user-attachments/assets/c1fd6d74-adbf-41e3-a373-17a64482cc28)
    
-> (From `segment_orders`. “# Orders” is simply the count of distinct `Order ID` in each segment.)
+      > (From `segment_orders`. “# Orders” is simply the count of distinct `Order ID` in each segment.)
 
-   [graph_visualiser-1749769663859](https://github.com/user-attachments/assets/6dcaebf9-2658-44ab-9bd4-9e68eef16c7a)
+      ![graph_visualiser-1749769663859](https://github.com/user-attachments/assets/6dcaebf9-2658-44ab-9bd4-9e68eef16c7a)
 
-* **Conclusion**:
-  * **Corporate** customers place MOST orders in total (2,586 over four years), but with a slightly lower average order value ($223.73 avg).
-  * **Consumer** customers place lower orders (1,514) but each order is relatively large ($233.82).
-  * **Home Office** is lowest in frequency (909 orders) and average size ($240.97).
+      * **Conclusion**:
+        * **Corporate** customers place MOST orders in total (2,586 over four years), but with a slightly lower average order value ($223.73 avg).
+        * **Consumer** customers place lower orders (1,514) but each order is relatively large ($233.82).
+        * **Home Office** is lowest in frequency (909 orders) and average size ($240.97).
 ---
 
 ### Shipping and Discounts
