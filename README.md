@@ -312,8 +312,15 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
 ### Sales Performance and Profitability
 1. **Which region generated the highest sales and profit during the four-year period?**
 
-   #### Method:
-   Group by **Region**, then sum `Sales` and sum `Profit`, and sort by `Sales` (descending).
+   #### SQLQuery:
+   ```sql
+   -- 1. Region with Highest Sales and Profit
+   SELECT region, SUM(sales) AS total_sales, SUM(profit) AS total_profit
+   	FROM sales_record
+   GROUP BY region
+   ORDER BY total_sales DESC, total_profit DESC
+   LIMIT 1;
+   ```
    
    #### Result:
      * **West** is the top‐performing region in both total sales (≈\$725K) and total profit (≈\$108K).
@@ -321,92 +328,205 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
 
 2. **How do sales and profit vary across different segments (e.g., Consumer, Corporate, Home Office)?**
 
-   #### Method:
-   Group by **Segment**, then sum `Sales` and sum `Profit`.
-
+   #### SQLQuery:
+   ```sql
+      -- 2. Sales and Profit by Segment
+   SELECT 
+   	segment, 
+   	SUM(sales) AS total_sales, 
+   	SUM(profit) AS total_profit
+   FROM sales_record
+   GROUP BY segment;
+   ```
+   ```sql
+   WITH sales_prof AS (
+       SELECT 
+           segment, 
+           SUM(sales) AS total_sales, 
+           SUM(profit) AS total_profit
+       FROM sales_record
+       GROUP BY segment
+   )
+   SELECT 
+       segment, 
+   	ROUND(SUM(total_profit/total_sales), 2) margins
+   FROM sales_prof
+   GROUP BY segment;
+   ```
    #### Result:
-     1. **Consumer** is by far the largest segment (≈$1.16 M in sales, ≈\$134 K profit).
-     2. **Corporate** is second (≈\$706 K sales, ≈\$91 K profit).
-     3. **Home Office** is smallest (≈\$429 K sales, ≈\$60 K profit).
-     4. In terms of margin (Profit ÷ Sales):
+     * **Consumer** is by far the largest segment (≈$1.16 M in sales, ≈\$134 K profit).
+     * **Corporate** is second (≈\$706 K sales, ≈\$91 K profit).
+     * **Home Office** is smallest (≈\$429 K sales, ≈\$60 K profit).
+     * In terms of margin (Profit ÷ Sales):
         * Consumer margin ≈ 12%
         * Corporate margin ≈ 13%   
         * Home Office margin ≈ 14%
-> *These numbers were obtained by grouping all 9,994 transactions by `Segment` and summing `Sales`/`Profit` for each.*
 
 3. **Which product categories and sub-categories contributed the most to sales and profit?**
 
-   #### Method:
-   1. **Category level:** Group by `Category` → sum `Sales`, sum `Profit`.
-   2. **Sub-Category level:** Group by `Sub-Category` → sum `Sales`, sum `Profit`.
+   #### SQLQuery:
+   ```
+   -- 3. Top Product Categories by Sales and Profit
+   SELECT 
+   	category, 
+   	SUM(sales) AS total_sales, 
+   	SUM(profit) AS total_profit,
+   	ROUND(SUM(profit)/SUM(sales),3) profit_margin
+   FROM sales_record
+   GROUP BY category
+   ORDER BY total_sales DESC
+   LIMIT 5;
+   ```
+   ```sql
+       -- Top Sub-Categories by Sales and Profit
+   SELECT 
+   	sub_category, 
+   	SUM(sales) AS total_sales, 
+   	SUM(profit) AS total_profit,
+   	ROUND(SUM(profit)/SUM(sales),3) profit_margin
+   FROM sales_record
+   GROUP BY sub_category
+   ORDER BY total_sales DESC
+   LIMIT 5;
+
+   ```
+   * **Category level:** Group by `Category` - sum `Sales`, sum `Profit`.
+   ![categories](https://github.com/user-attachments/assets/0676d8c4-d897-45d6-9277-12b4421227df)
+
+   * **Sub-Category level:** Group by `Sub-Category` - sum `Sales`, sum `Profit`.
+   ![subcategories](https://github.com/user-attachments/assets/a59883ea-c321-464c-9519-5057d5ed1f98)
 
    #### Results (top categories by sales):
-   1. **Technology** is #1 in both sales (≈\$836 K) and profit (≈\$145 K).
-   2. **Furniture** is #2 in sales (≈\$742 K) but very low profit (≈\$18 K, just \~2.5% margin).
-   3. **Office Supplies** is #3 in sales (≈\$719 K) and also high‐margin (≈\$122 K profit → \~17%).
+   * **Technology** is #1 in both sales (≈\$836 K) and profit (≈\$145 K).
+   * **Furniture** is #2 in sales (≈\$742 K) but very low profit (≈\$18 K, just \~2.5% margin).
+   * **Office Supplies** is #3 in sales (≈\$719 K) and also high‐margin (≈\$122 K profit → \~17%).
 
    #### Results (top sub-categories by sales):
    * **Phones**, **Chairs** and **Storage** lead in absolute sales and also carry healthy margins (\~8.1–13.5%).
    * **Tables** has relatively high sales but a negative margin (\~-8.6%), meaning it is dragging overall Furniture profitability down.
 
-
 4. **What is the trend of average profit margins over the years?**
 
-   #### Method:
-   1. Add a new column `Profit_Margin` = `Profit` ÷ `Sales` on each row.
-   2. Group by `Year` and average that margin.
-
+   #### SQLQuery:
+   ```sql
+   -- 4. Average Profit Margin Over Years
+   SELECT 
+   	EXTRACT(YEAR FROM order_date) AS year, 
+   	ROUND(AVG(profit::NUMERIC / NULLIF(sales, 0)),3) AS avg_profit_margin
+   FROM sales_record
+   GROUP BY year
+   ORDER BY year;
+   ```
+   
    #### Result:
+   ![PROFIT MARGIN graph_visualiser-1749766610861](https://github.com/user-attachments/assets/3ce894e9-769b-4fc0-8bb3-6a86e4e6d311)
+
    * Margins stayed roughly in the 12% range, peaking slightly in 2016 to around 13%, then dipping a bit in 2017.
 ---
 
 ### Customer and Sales Team Analysis
 6. **Who are the top 10 customers by sales and profit?**
   
-   #### Method:
+   #### SQLQuery:
 
-   1. **By Sales:** Group by `Customer Name` → sum `Sales`, sum `Profit` → sort by `Sales` descending → take top 10.
-   2. **By Profit:** Group by `Customer Name` → same, but sort by `Profit` descending.
+      ```sql
+         -- 6. Top 10 Customers by Sales
+         SELECT 
+         	customer_name, 
+         	SUM(sales) AS total_sales, 
+         	SUM(profit) AS total_profit
+         FROM sales_record
+         GROUP BY customer_name
+         ORDER BY total_sales DESC
+         LIMIT 10;
+      ```
+      ```sql
+         -- Top 10 Customers by Profit
+         SELECT 
+         	customer_name, 
+         	SUM(sales) AS total_sales, 
+         	SUM(profit) AS total_profit
+         FROM sales_record
+         GROUP BY customer_name
+         ORDER BY total_profit DESC
+         LIMIT 10;
+      ```
 
    #### Results:
+      * Top 10 customers by sales
+
+      ![by sales](https://github.com/user-attachments/assets/c61cb091-dfd9-4191-9868-8106039d89c9)
+
+      * Top 10 customers by profit
+
+      ![by profit](https://github.com/user-attachments/assets/cdbec822-716e-45b7-9257-c1bdd7e88492)
+
    * **Insights**:
      * **Sean Miller** is #1 in sales (≈\$25 K) but actually lost money (–\$1,980) over four years (heavy discounts/returns).
      * **Tamara Chand** is the #1 profit contributor (\~\$8,981).
   
 7. **Which sales representative achieved the highest sales growth over the years?**
 
-   #### Method:
-   1. Group by `Sales Rep` and `Year` → sum `Sales`.
-   2. For each rep, compute `(Sales in final year – Sales in first year) ÷ (Sales in first year)`.
-   3. Sort by that percentage (descending).
+   #### SQLQuery:
+      ```sql
+            -- 7. Sales Rep with Highest Sales Growth
+      WITH yearly_sales AS (
+        SELECT 
+          sales_rep, 
+          EXTRACT(YEAR FROM order_date) AS year, 
+          SUM(sales) AS total_sales
+        FROM sales_record
+        GROUP BY sales_rep, year
+      ),
+      sales_2014_2017 AS (
+        SELECT
+          sales_rep,
+          MIN(CASE WHEN year = 2014 THEN total_sales END) AS sales_2014,
+          MAX(CASE WHEN year = 2017 THEN total_sales END) AS sales_2017
+        FROM yearly_sales
+        WHERE year IN (2014, 2017)
+        GROUP BY sales_rep
+      )
+      SELECT
+        sales_rep,
+        ROUND((sales_2017 - sales_2014) / NULLIF(sales_2014, 0), 2) AS growth_perc
+      FROM sales_2014_2017
+      WHERE sales_2014 IS NOT NULL AND sales_2017 IS NOT NULL
+      ORDER BY growth_perc DESC
+      LIMIT 1; 
+      ```
 
    #### Results:
-   * **Stella Given**, **Sheila Stones** and **Mary Gerrard** grew their total annual sales from very small bases in 2014 to much larger numbers in 2017 (≈+387%, ≈+284% and ≈+220% respectively).
-   * Among reps who had decent volume in 2017, **Jimmy Grey**, **Alan Ray**, and **Anne Wu** also show strong double‐digit year-over-year compound growth.
+   
+   ![sales rep by % growth graph_visualiser-1749764952718](https://github.com/user-attachments/assets/a0befb95-ae52-45df-9bc9-276925ed275b)
+
+      * **Stella Given** achieved the highest sales growth over the years
+      * **Stella Given**, **Sheila Stones** and **Mary Gerrard** grew their total annual sales from very small bases in 2014 to much larger numbers in 2017 (≈+387%, ≈+284% and ≈+220% respectively).
+      * Among reps who had decent volume in 2017, **Jimmy Grey**, **Alan Ray**, and **Anne Wu** also show strong double‐digit year-over-year compound growth.
 
 8. **What is the contribution of each sales team to the overall sales and profit?**
 
-   #### Method:
-
-Group by `Sales Team`, then sum `Sales` and sum `Profit`.
-
+   #### SQLQuery:
+      ```sql
+      -- 8. Sales Team Contribution
+      SELECT 
+      	sales_team, 
+      	SUM(sales) AS total_sales, 
+      	SUM(profit) AS total_profit
+      FROM sales_record
+      GROUP BY sales_team
+      ORDER BY total_profit DESC;
+      ```
 #### Result:
-
-| Sales Team      | Total Sales  | Total Profit |
-| --------------- | ------------ | ------------ |
-| **Organic**     | \$400,253.10 | \$ 60,130.25 |
-| **Inorganic**   | \$320,145.25 | \$ 48,476.80 |
-| **e-Commerce**  | \$298,608.90 | \$ 45,280.70 |
-| **Field Sales** | \$285,568.45 | \$ 40,230.10 |
-
-> (From our `team_agg` table.)
-
+   ![Screenshot 2025-06-12 222850](https://github.com/user-attachments/assets/5dedc081-a9f5-4962-9a70-56e092735067)
+   
+   ![graph_visualiser-1749753959690](https://github.com/user-attachments/assets/493e0ede-71b5-4170-b061-faa9f28f8ab6)
+   
 * **Conclusion**:
-
-  1. **Organic** (≈\$400 K sales, \$60 K profit) is the top team.
-  2. **Inorganic** (≈\$320 K sales, \$48 K profit) and **e-Commerce** (\~\$298 K, \$45 K) follow.
-  3. **Field Sales** is slightly smaller (≈\$285 K, \$40 K).
-  4. Overall, the four teams each contribute roughly 20–25% of total sales.
+  1. **Organic** ($1.4 M sales, $183 K profit) is the top team.
+  2. **Bravo** ($220 K sales, $34 K profit) and **Delta** (\~\$234 K, \$27 K) follow.
+  3. **Charlie** is slightly smaller ($235 K, $21 K).
+  4. Overall, the **Organic** teams contributed over 60% of total sales.
 
 9. **Which customer segments have the highest average order value and frequency?**
    #### Definitions & Method:
