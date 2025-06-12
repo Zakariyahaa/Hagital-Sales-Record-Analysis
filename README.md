@@ -531,7 +531,7 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
 
 9. **Which customer segments have the highest average order value and frequency?**
       #### SQLQuery:
-      ```
+      ```sql
       -- 9. Segment with Highest Average Order Value and Frequency
       SELECT segment, 
       	ROUND(AVG(sales),2) AS avg_order_value, 
