@@ -365,7 +365,7 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
 3. **Which product categories and sub-categories contributed the most to sales and profit?**
 
    #### SQLQuery:
-   ```
+   ```sql
    -- 3. Top Product Categories by Sales and Profit
    SELECT 
    	category, 
@@ -529,37 +529,33 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
   4. Overall, the **Organic** teams contributed over 60% of total sales.
 
 9. **Which customer segments have the highest average order value and frequency?**
-   #### Definitions & Method:
-
-* For each **Order ID**, we sum up `Sales` to get the “Order-level sales amount.”
-* Then group those order-sums by `Segment` and compute:
-
-  1. **Average Order Value** (average of order-sums in that segment).
-  2. **Order Frequency** (the total number of orders in that segment).
+   #### SQLQuery:
+      ```
+      -- 9. Segment with Highest Average Order Value and Frequency
+      SELECT segment, 
+      	ROUND(AVG(sales),2) AS avg_order_value, 
+      	COUNT(DISTINCT order_id) AS order_frequency
+      FROM sales_record
+      GROUP BY segment;
+      ```
 
 #### Result:
-
-| Segment         | Avg Order Value | # Orders (2014–2017) |
-| --------------- | --------------- | -------------------- |
-| **Corporate**   | \$516.45        | 1,280                |
-| **Consumer**    | \$450.12        | 3,010                |
-| **Home Office** | \$412.80        | 719                  |
-
+   ![image](https://github.com/user-attachments/assets/c1fd6d74-adbf-41e3-a373-17a64482cc28)
+   
 > (From `segment_orders`. “# Orders” is simply the count of distinct `Order ID` in each segment.)
 
+   [graph_visualiser-1749769663859](https://github.com/user-attachments/assets/6dcaebf9-2658-44ab-9bd4-9e68eef16c7a)
+
 * **Conclusion**:
-
-  1. **Corporate** customers place fewer orders in total (≈1,280 over four years), but each order is relatively large (≈\$516 avg).
-  2. **Consumer** customers place many more orders (≈3,010) but with a slightly lower average order value (≈\$450).
-  3. **Home Office** is lowest in frequency (≈719 orders) and average size (≈\$413).
-
+  * **Corporate** customers place MOST orders in total (2,586 over four years), but with a slightly lower average order value ($223.73 avg).
+  * **Consumer** customers place lower orders (1,514) but each order is relatively large ($233.82).
+  * **Home Office** is lowest in frequency (909 orders) and average size ($240.97).
 ---
 
 ### Shipping and Discounts
 10. **How does the ship mode impact delivery timelines and customer satisfaction?**
 
     #### Method:
-
 1. Group by `Ship Mode` → average of `Shipping Days`.
 2. Count how many shipments used each mode.
 3. (We do **not** have a direct “customer satisfaction” field in the dataset; we will note that as a limitation. However, we do know that shorter shipping times generally imply higher satisfaction.)
