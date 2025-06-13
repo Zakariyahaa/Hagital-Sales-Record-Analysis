@@ -208,11 +208,11 @@ EDA was conducted to understand the dataset's structure and identify key trends 
 
 | Sub-Category    | Revenue     | Profit      | Orders (Approx.) |
 |-----------------|-------------|-------------|------------------|
-| Copiers         | $157,820†  | $29,654†   | ~200             |
-| Phones          | $142,460†  | $24,310†   | ~1,100           |
-| Accessories     | $135,230†  | $21,875†   | ~1,800           |
-| Office Machines | $115,900†  | $18,240†   | ~130             |
-| Chairs          | $103,500†  | $5,460†    | ~680             |
+| Copiers         | $157,820  | $29,654   | ~200             |
+| Phones          | $142,460  | $24,310   | ~1,100           |
+| Accessories     | $135,230  | $21,875   | ~1,800           |
+| Office Machines | $115,900  | $18,240   | ~130             |
+| Chairs          | $103,500  | $5,460    | ~680             |
 
 - Notice that **Chairs** shows a disproportionately low profit (only ~5.3% margin) compared to its revenue.  
 - **Office Machines**, though smaller in order count, deliver a strong margin (~15.7%).  
@@ -235,9 +235,9 @@ EDA was conducted to understand the dataset's structure and identify key trends 
 | Sanjit Engle        | $12,209.44   | $2,650.68   | 78             |
 | Christopher Conant  | $12,129.07   | $2,177.05   | 34             |
 
-- **Sean Miller** is the single largest revenue‐generating customer (~\$25 K) but at a **net loss** of ~\$1,980 (disproportionate discounts or high returns).  
-- **Tamara Chand** contributed ~\$19 K and yielded \$8.9 K in profit (47% margin).  
-- Several customers buy large quantities (e.g., Ken Lonsdale: 113 units, \$14K revenue) but yield lower margins (only \$806 profit).
+- **Sean Miller** is the single largest revenue‐generating customer (~$25 K) but at a **net loss** of ~$1,980 (disproportionate discounts or high returns).  
+- **Tamara Chand** contributed ~$19 K and yielded $8.9 K in profit (47% margin).  
+- Several customers buy large quantities (e.g., Ken Lonsdale: 113 units, $14K revenue) but yield lower margins (only $806 profit).
 
 ### Order Destinations (Geographic)
 
