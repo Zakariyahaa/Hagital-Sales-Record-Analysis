@@ -34,7 +34,7 @@ This project analyzes the sales performance of **Hagital Store**, a retailer wit
 
 ## 📂 Data Sources
 
-* **Excel Files**: `2014 Sales Records`, `2015 Sales Records`, `2016 Sales Records`, `2017 Sales Records`, `All Sales Records_PBI.xlsx`
+* **Excel Files**: `2014 Sales Records.xlsx`, `2015 Sales Records.xlsx`, `2016 Sales Records.xlsx`, `2017 Sales Records.xlsx`, `All Sales Records_PBI.xlsx`
 * A combination of 4 Excel Files into a single Excel sheet `Sales Table` containing 9,994 rows (transactions) and 23 columns, covering Hagital Store’s orders from 2014 to 2017
   * Contains sales records with columns: Order ID, Order Date, Ship Date, Ship Mode, Customer ID, Customer Name, Segment, Sales Rep, Sales Team, Sales Team Manager, Location ID, City, State, Postal Code, Region, Product ID, Category, Sub-Category, Product Name, Sales, Quantity, Discount, and Profit.
 
@@ -53,7 +53,7 @@ This project analyzes the sales performance of **Hagital Store**, a retailer wit
 ## 🧹 Data Cleaning and Preparation
 The dataset was cleaned and transformed using Power Query in Power BI to ensure data quality and consistency. Below are the steps taken:
 1. **Initial Inspection**:
-   - Loaded all excel files: `2014 Sales Records`, `2015 Sales Records`, `2016 Sales Records`, `2017 Sales Records` into Power BI and appended them using the inbuilt Power Query to create new table `Sales Table`. The table was extracted and renamed as `All Sales Records_PBI.xlsx` after cleaning.
+   - Loaded all excel files: `2014 Sales Records.xlsx`, `2015 Sales Records.xlsx`, `2016 Sales Records.xlsx`, `2017 Sales Records.xlsx` into Power BI and appended them using the inbuilt Power Query to create new table `Sales Table`. The table was extracted and renamed as `All Sales Records_PBI.xlsx` after cleaning.
    - Checked for missing values, duplicates, and inconsistencies.
    - Identified 23 columns and 9,994 rows.
 2. **Data Transformation**:
@@ -64,7 +64,7 @@ The dataset was cleaned and transformed using Power Query in Power BI to ensure 
 3. **Data Validation**:
    - In Power Query:  
      - Selected `Order Date` and `Ship Date` columns were changed to **Date** data type.  
-     - Ensured format consistency (e.g., “Monday, September 29, 2014” → `2014‐09‐29`).  
+     - Ensured format consistency (e.g., “Monday, September 29, 2014” ==> `2014‐09‐29`).  
    - **Convert Numeric Columns**  
      - `Sales`, `Quantity`, `Discount`, `Profit` were set to numeric / decimal data types.  
      - `Postal Code` sometimes loaded as numeric was converted to **Text** (to preserve leading zeros for ZIP codes like “04567”).  
@@ -156,9 +156,9 @@ EDA was conducted to understand the dataset's structure and identify key trends 
 | 2017 | $733,215.26  | $93,439.27  | 1,687         |
 
 - **Revenue Growth**:  
-  - 2014 → 2015 saw a slight dip (–\$13,714), but 2015 → 2016 jumped by +\$138,673 (+29.5%), and 2016 → 2017 grew by +\$124,010 (+20.3%).  
+  - 2014 → 2015 saw a slight dip (–$13,714), but 2015 → 2016 jumped by +$138,673 (+29.5%), and 2016 ==> 2017 grew by +$124,010 (+20.3%).  
 - **Profit Growth**:  
-  - Profit climbed steadily each year, from \$49.5 K in 2014 to \$93.4 K in 2017—a net +88.7%.  
+  - Profit climbed steadily each year, from $49.5 K in 2014 to $93.4 K in 2017 — a net +88.7%.  
 - **Orders Growth**:  
   - The number of unique orders increased from 969 (2014) to 1,687 (2017), a +74% jump over the four years.  
 - **Average Profit Margin** (Profit ÷ Revenue) improved from ~10.2% (2014) to ~12.7% (2017).
@@ -173,9 +173,9 @@ EDA was conducted to understand the dataset's structure and identify key trends 
 | South    | $391,721.91  | $46,749.43  | 822           |
 
 - **West Region**:  
-  - Highest Sales and profit; ~31.6% of total revenue, ~37.9% of total profit.  
+  - Highest Sales and profit; 31.6% of total revenue, 37.9% of total profit.  
 - **East Region**:  
-  - Second in overall sales (29.5% of total revenue), with a slightly lower margin (profit ~13.5%).  
+  - Second in overall sales (29.5% of total revenue), with a slightly lower margin (profit 13.5%).  
 - **Central Region**:  
   - Mid‐tier performance; 21.8% of revenue, but only 13.9% of profit (lower margin).  
 - **South Region**:  
@@ -192,16 +192,16 @@ EDA was conducted to understand the dataset's structure and identify key trends 
 | Office Supplies  | $719,047.03  | $122,490.80 | 3,742         |
 
 - **Technology**  
-  - Highest‐grossing category (~36.4% of total revenue).  
-  - Profit margin ~17.4% (very healthy).  
+  - Highest‐grossing category (36.4% of total revenue).  
+  - Profit margin 17.4% (very healthy).  
   - 1,544 unique orders.  
 - **Furniture**  
   - 32.3% of total revenue.  
-  - Very low margin (~2.5%): \$18,451 profit on \$742 K in sales.  
+  - Very low margin (2.5%): $18,451 profit on $742 K in sales.  
   - Possible discounting, extended ship times, or high shipping costs squeezing margins.  
 - **Office Supplies**  
   - 31.3% of total revenue.  
-  - Profit margin ~17.0% (strong).  
+  - Profit margin 17.0% (strong).  
   - Highest number of unique orders (3,742), indicating many small‐ticket items.
 
 #### Top 5 Sub-Categories by Revenue
@@ -261,15 +261,15 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
 
 ### Sales vs. Profit Relationships
 - **Scatterplot Analysis (Profit vs. Sales) by Product**  
-  - Most **Furniture** sales cluster in the \$50–\$300 range in sales but hover near zero to low‐profit.  
-  - **Technology** items frequently have higher ticket prices (\$500–\$2,500), with proportionally higher profits.  
-  - **Office Supplies** are high‐volume (many \$20–\$100 orders) with mid‐range margins.
+  - Most **Furniture** sales cluster in the $50 – $300 range in sales but hover near zero to low‐profit.  
+  - **Technology** items frequently have higher ticket prices ($500 – $2,500), with proportionally higher profits.  
+  - **Office Supplies** are high‐volume (many $20 – $100 orders) with mid‐range margins.
 - **Profit Margin Distribution** (by Category)  
-  - **Furniture**: Mean margin ~2.7%, with several negative‐profit outliers (returns, over‐discount).  
-  - **Office Supplies**: Mean margin ~17.0%, relatively tight distribution around mean.  
-  - **Technology**: Mean margin ~17.4%, but higher variance (some products like laptops yield ~25%, others like monitors yield ~10%).
+  - **Furniture**: Mean margin 2.7%, with several negative‐profit outliers (returns, over‐discount).  
+  - **Office Supplies**: Mean margin 17.0%, relatively tight distribution around mean.  
+  - **Technology**: Mean margin 17.4%, but higher variance (some products like laptops yield 25%, others like monitors yield 10%).
 - **Key Finding**:  
-  - Even though **Furniture** is ~32% of revenue, it contributes only ~6.4% of total profit.  
+  - Even though **Furniture** is 32% of revenue, it contributes only 6.4% of total profit.  
   - Recommend reviewing supplier agreements, shipping costs, and discount policies on Furniture.
   
 ### Shipping Delays & Their Impact
@@ -279,19 +279,19 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
   - 5% of orders shipped same‐day or next‐day.  
   - 10% of orders took 7+ days (often Furniture items shipped via freight).
 - **Correlation with Profit**  
-  - Orders with **`Shipping Days` > 5** show an average margin of ~12.5%.  
-  - Orders with **`Shipping Days` ≤ 3** show an average margin of ~14.2%.  
+  - Orders with **`Shipping Days` > 5** show an average margin of 12.5%.  
+  - Orders with **`Shipping Days` ≤ 3** show an average margin of 14.2%.  
   - Suggests faster shipping correlates with slightly higher profitability—likely because expedited shipping fees are passed on or because late shipments incur discounts/penalties.
 
 ### Margin Analysis by Product Line
 - **Top 3 High‐Margin Sub‐Categories**  
-  1. **Phones** – ~18.2% margin  
-  2. **Office Machines** – ~15.7% margin  
-  3. **Binders** – ~14.8% margin  
+  1. **Phones** – 18.2% margin  
+  2. **Office Machines** – 15.7% margin  
+  3. **Binders** – 14.8% margin  
 - **Top 3 Low‐Margin Sub‐Categories**  
-  1. **Chairs** – ~5.3% margin  
-  2. **Bookcases** – ~6.9% margin (some negative‐profit outliers due to returns)  
-  3. **Storage** – ~8.5% margin  
+  1. **Chairs** – 5.3% margin  
+  2. **Bookcases** – 6.9% margin (some negative‐profit outliers due to returns)  
+  3. **Storage** – 8.5% margin  
 - **Takeaway**:  
   - Shifting marketing focus toward **Phones** and **Office Machines** likely yields stronger bottom‐line improvement.  
   - Consider renegotiating vendor terms or reducing Freight on **Chairs** and **Bookcases**.
@@ -300,10 +300,10 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
 - **Monthly Revenue by Year** (aggregated; Jan – Dec):  
   - **Peak months**: October and November consistently top (holiday/promo season).  
   - **Low months**: July and August (summer lull).  
-  - Year‐over‐Year: the October 2017 peak (\$90 K) was ~22% higher than October 2016 (\$74 K).
+  - Year‐over‐Year: the October 2017 peak ($90 K) was ~22% higher than October 2016 ($74 K).
 - **Weekend vs. Weekday Orders**  
   - ~80% of orders are placed on weekdays (Mon–Fri); 20% on weekends.  
-  - Weekend orders have a slightly lower average basket value (\$420 vs. \$470) but similar profit margins.
+  - Weekend orders have a slightly lower average basket value ($420 vs. $470) but similar profit margins.
   - 
 ---
 ### Answers to Capstone Project Questions
@@ -323,7 +323,7 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
    ```
    
    #### Result:
-     * **West** is the top‐performing region in both total sales (≈\$725K) and total profit (≈\$108K).
+     * **West** is the top‐performing region in both total sales ($725K) and total profit ($108K).
      * It is followed by East, Central, then South.
 
 2. **How do sales and profit vary across different segments (e.g., Consumer, Corporate, Home Office)?**
@@ -354,13 +354,13 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
    GROUP BY segment;
    ```
    #### Result:
-     * **Consumer** is by far the largest segment (≈$1.16 M in sales, ≈\$134 K profit).
-     * **Corporate** is second (≈\$706 K sales, ≈\$91 K profit).
-     * **Home Office** is smallest (≈\$429 K sales, ≈\$60 K profit).
+     * **Consumer** is by far the largest segment ($1.16 M in sales, $134 K profit).
+     * **Corporate** is second ($706 K sales, $91 K profit).
+     * **Home Office** is smallest ($429 K sales, $60 K profit).
      * In terms of margin (Profit ÷ Sales):
-        * Consumer margin ≈ 12%
-        * Corporate margin ≈ 13%   
-        * Home Office margin ≈ 14%
+        * Consumer margin ==> 12%
+        * Corporate margin ==> 13%   
+        * Home Office margin ==> 14%
 
 3. **Which product categories and sub-categories contributed the most to sales and profit?**
 
@@ -399,13 +399,13 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
    ![subcategories](https://github.com/user-attachments/assets/a59883ea-c321-464c-9519-5057d5ed1f98)
 
    #### Results (top categories by sales):
-   * **Technology** is #1 in both sales (≈\$836 K) and profit (≈\$145 K).
-   * **Furniture** is #2 in sales (≈\$742 K) but very low profit (≈\$18 K, just \~2.5% margin).
-   * **Office Supplies** is #3 in sales (≈\$719 K) and also high‐margin (≈\$122 K profit → \~17%).
+   * **Technology** is #1 in both sales ($836 K) and profit ($145 K).
+   * **Furniture** is #2 in sales ($742 K) but very low profit ($18 K, just 2.5% margin).
+   * **Office Supplies** is #3 in sales ($719 K) and also high‐margin ($122 K profit which translate to 17%).
 
    #### Results (top sub-categories by sales):
-   * **Phones**, **Chairs** and **Storage** lead in absolute sales and also carry healthy margins (\~8.1–13.5%).
-   * **Tables** has relatively high sales but a negative margin (\~-8.6%), meaning it is dragging overall Furniture profitability down.
+   * **Phones**, **Chairs** and **Storage** lead in absolute sales and also carry healthy margins (8.1% – 13.5%).
+   * **Tables** has relatively high sales but a negative margin (-8.6%), meaning it is dragging overall Furniture profitability down.
 
 4. **What is the trend of average profit margins over the years?**
 
@@ -463,8 +463,8 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
       ![by profit](https://github.com/user-attachments/assets/cdbec822-716e-45b7-9257-c1bdd7e88492)
 
    * **Insights**:
-     * **Sean Miller** is #1 in sales (≈\$25 K) but actually lost money (–\$1,980) over four years (heavy discounts/returns).
-     * **Tamara Chand** is the #1 profit contributor (\~\$8,981).
+     * **Sean Miller** is #1 in sales ($25 K) but actually lost money (–$1,980) over four years (heavy discounts/returns).
+     * **Tamara Chand** is the #1 profit contributor ($8,981).
   
 7. **Which sales representative achieved the highest sales growth over the years?**
 
@@ -502,7 +502,7 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
    ![sales rep by % growth graph_visualiser-1749764952718](https://github.com/user-attachments/assets/a0befb95-ae52-45df-9bc9-276925ed275b)
 
       * **Stella Given** achieved the highest sales growth over the years
-      * **Stella Given**, **Sheila Stones** and **Mary Gerrard** grew their total annual sales from very small bases in 2014 to much larger numbers in 2017 (≈+387%, ≈+284% and ≈+220% respectively).
+      * **Stella Given**, **Sheila Stones** and **Mary Gerrard** grew their total annual sales from very small bases in 2014 to much larger numbers in 2017 (+387%, +284% and +220% respectively).
       * Among reps who had decent volume in 2017, **Jimmy Grey**, **Alan Ray**, and **Anne Wu** also show strong double‐digit year-over-year compound growth.
 
 8. **What is the contribution of each sales team to the overall sales and profit?**
@@ -525,7 +525,7 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
    
    * **Conclusion**:
      * **Organic** ($1.4 M sales, $183 K profit) is the top team.
-     * **Bravo** ($220 K sales, $34 K profit) and **Delta** (\~\$234 K, \$27 K) follow.
+     * **Bravo** ($220 K sales, $34 K profit) and **Delta** ($234 K, \$27 K) follow.
      * **Charlie** is slightly smaller ($235 K, $21 K).
      * Overall, the **Organic** teams contributed over 60% of total sales.
 
@@ -548,9 +548,9 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
       ![graph_visualiser-1749769663859](https://github.com/user-attachments/assets/6dcaebf9-2658-44ab-9bd4-9e68eef16c7a)
 
       * **Conclusion**:
-        * **Corporate** customers place MOST orders in total (2,586 over four years), but with a slightly lower average order value ($223.73 avg).
-        * **Consumer** customers place lower orders (1,514) but each order is relatively large ($233.82).
-        * **Home Office** is lowest in frequency (909 orders) and average size ($240.97).
+        * **Consumer** customers place most orders in total (2,586 over four years), but with a slightly lower average order value ($223.73 avg.).
+        * **Corporate** customers place lower orders (1,514) but each order is relatively large ($233.82).
+        * **Home Office** is lowest in frequency (909 orders) but had the largest order value ($240.97 avg.).
 ---
 
 ### Shipping and Discounts
