@@ -30,6 +30,8 @@
 
 This project analyzes the sales performance of **Hagital Store**, a retailer with operations across various regions, focusing on sales, profit, and order trends from 2014 to 2017. The goal is to uncover insights into sales patterns, team performance, and product categories to inform business strategies. The analysis leverages a dataset of sales records, demonstrating how the data was cleaned, explored, and analyzed, and then presenting key findings and actionable recommendations.
 
+   ![Sales Overview](https://github.com/user-attachments/assets/df31a34b-e8cc-4c66-ae73-252b02b1cd87)
+
 ---
 
 ## 📂 Data Sources
@@ -183,6 +185,7 @@ EDA was conducted to understand the dataset's structure and identify key trends 
   - Lowest absolute sales (17.1% of total), but margin (profit ÷ sales) is ~11.9%, roughly in line with the overall average.
 
 ### Category & Sub-Category Performance
+![Order Details](https://github.com/user-attachments/assets/ca10ce4b-2a9c-4946-88d6-9053effece87)
 
 #### By Category
 
@@ -207,17 +210,17 @@ EDA was conducted to understand the dataset's structure and identify key trends 
 
 #### Top 5 Sub-Categories by Revenue
 
-| Sub-Category    | Revenue     | Profit      | Orders (Approx.) |
-|-----------------|-------------|-------------|------------------|
-| Copiers         | $157,820  | $29,654   | ~200             |
-| Phones          | $142,460  | $24,310   | ~1,100           |
-| Accessories     | $135,230  | $21,875   | ~1,800           |
-| Office Machines | $115,900  | $18,240   | ~130             |
-| Chairs          | $103,500  | $5,460    | ~680             |
+| Sub-Category    | Revenue     | Profit      | Orders |
+|-----------------|-------------|-------------|--------------|
+| Phones          | $330,007.10  | $44,516.25   | 889        |
+| Chairs          | $328,449.13  | $26,590.15   | 617        |
+| Storage         | $223,843.59  | $21,279.05   | 846        |
+| Tables          | $206,965.68  | $-17,725.59  | 319        |
+| Binders         | $203,412.77  | $30,221.64   | 1523       |
 
-- Notice that **Chairs** shows a disproportionately low profit (only ~5.3% margin) compared to its revenue.  
-- **Office Machines**, though smaller in order count, deliver a strong margin (~15.7%).  
-- **Binders, Paper, Storage** categories each contributed between \$60–\$90 K in revenue but have mid‐range margins (10–15%).
+- Notice that **Tables** shows a disproportionately negative profit (-8.6% margin) compared to its revenue.  
+- **Binders** with higher order count, deliver a strong margin (~15%).  
+- **Phones, Chairs, Storage** categories each contributed between $220 K – $330 K in revenue but have mid‐range margins (10–14%).
 
 ### Top Customers
 
@@ -241,18 +244,16 @@ EDA was conducted to understand the dataset's structure and identify key trends 
 - Several customers buy large quantities (e.g., Ken Lonsdale: 113 units, $14K revenue) but yield lower margins (only $806 profit).
 
 ### Order Destinations (Geographic)
-
 - **State‐Level Order Counts (Top 5)**  
-  1. **California (West)** – 425 unique orders  
-  2. **New York (East)** – 390 unique orders  
-  3. **Texas (Central)** – 350 unique orders  
-  4. **Florida (South)** – 320 unique orders  
-  5. **Illinois (Central)** – 290 unique orders  
+  1. **California (West)** – 1,021 unique orders  
+  2. **New York (East)** – 562 unique orders  
+  3. **Texas (Central)** – 487 unique orders  
+  4. **Pennsylvania (NorthEastern)** – 288 unique orders  
+  5. **Illinois (Central)** – 276 unique orders  
 
 - **Insight**:  
   - The West region dominance is driven heavily by California.  
   - The East region sees a heavy concentration in New York and New Jersey.  
-  - The South region is mostly Florida, Georgia, and North Carolina.  
   - The Central region is split between Texas, Illinois, and Michigan.
    
 ---
@@ -280,22 +281,22 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
   - 5% of orders shipped same‐day or next‐day.  
   - 10% of orders took 7+ days (often Furniture items shipped via freight).
 - **Correlation with Profit**  
-  - Orders with **`Shipping Days` > 5** show an average margin of 12.5%.  
-  - Orders with **`Shipping Days` ≤ 3** show an average margin of 14.2%.  
+  - Orders with **`Shipping Days` > 5** show an average margin of 12.5%. 
+  - Orders with **`Shipping Days` ≤ 3** show an average margin of 14.2%. 
   - Suggests faster shipping correlates with slightly higher profitability—likely because expedited shipping fees are passed on or because late shipments incur discounts/penalties.
 
 ### Margin Analysis by Product Line
 - **Top 3 High‐Margin Sub‐Categories**  
-  1. **Phones** – 18.2% margin  
-  2. **Office Machines** – 15.7% margin  
-  3. **Binders** – 14.8% margin  
+  1. **Label** – 44.4% margin  
+  2. **Paper** – 43.4% margin  
+  3. **Envelopes** – 42.3% margin  
 - **Top 3 Low‐Margin Sub‐Categories**  
-  1. **Chairs** – 5.3% margin  
-  2. **Bookcases** – 6.9% margin (some negative‐profit outliers due to returns)  
-  3. **Storage** – 8.5% margin  
+  1. **Tables** – -8.6% margin  
+  2. **Bookcases** – -3% margin (some negative‐profit outliers due to returns)  
+  3. **Supplies** – -2.5% margin  
 - **Takeaway**:  
-  - Shifting marketing focus toward **Phones** and **Office Machines** likely yields stronger bottom‐line improvement.  
-  - Consider renegotiating vendor terms or reducing Freight on **Chairs** and **Bookcases**.
+  - Shifting marketing focus toward **Label** and **Papers** likely yields stronger bottom‐line improvement.  
+  - Consider renegotiating vendor terms or reducing Freight and Discount on **Tables**, **Bookcases** and **Supplies**.
 
 ### Seasonality & Monthly Patterns
 - **Monthly Revenue by Year** (aggregated; Jan – Dec):  
@@ -488,11 +489,12 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
       ```
       #### Results:
       ![sales rep by % growth graph_visualiser-1749764952718](https://github.com/user-attachments/assets/a0befb95-ae52-45df-9bc9-276925ed275b)
-         * **Stella Given** achieved the highest sales growth over the years
-         * **Stella Given**, **Sheila Stones** and **Mary Gerrard** grew their total annual sales from very small bases in 2014 to much larger numbers in 2017 (+387%, +284% and +220% respectively).
+
+      * **Stella Given** achieved the highest sales growth over the years
+      * **Stella Given**, **Sheila Stones** and **Mary Gerrard** grew their total annual sales from very small bases in 2014 to much larger numbers in 2017 (+387%, +284% and +220% respectively).
          * Among reps who had decent volume in 2017, **Jimmy Grey**, **Alan Ray**, and **Anne Wu** also show strong double‐digit year-over-year compound growth.
 
-8. **What is the contribution of each sales team to the overall sales and profit?**
+9. **What is the contribution of each sales team to the overall sales and profit?**
       #### SQLQuery:
       ```sql
       -- 8. Sales Team Contribution
@@ -515,7 +517,7 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
         * **Charlie** is slightly smaller ($235 K, $21 K).
         * Overall, the **Organic** teams contributed over 60% of total sales.
 
-9. **Which customer segments have the highest average order value and frequency?**
+10. **Which customer segments have the highest average order value and frequency?**
       #### SQLQuery:
       ```sql
       -- 9. Segment with Highest Average Order Value and Frequency
