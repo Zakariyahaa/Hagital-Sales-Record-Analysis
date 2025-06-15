@@ -1010,95 +1010,107 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
         3. **West** region tends to hover around 21–22.5%% margin regardless of segment, with the best margin across all segments.
 ---
 
-## 🧾 Results and Key Findings
-1. **Robust Overall Growth (2014–2017)**  
-   - Revenue grew from \$484 K (2014) to \$733 K (2017) (+51.4%).  
+## 🧾 Results and Key Findings 
+1. **Sales & Profitability Trends**  
+   - **Steady growth**: Revenue grew from $484 K (2014) to $733 K (2017) (+51.4%).  
    - Profit grew even faster (+88.7%), indicating gradual margin improvement.  
-   - Orders increased by ~74% (969 → 1,687), suggesting strong market expansion.
+   - Orders increased by ~74% (969 ==> 1,687), suggesting strong market expansion.
+   - **Improving margins**: Average profit margin rose from 10.2% in 2014 to 12.7% in 2017.
+   - **Revenue seasonality**: October–December consistently see peak sales, especially for Technology products.
 
-2. **Regional “Powerhouse” = West**  
+2. **Regional Performance**  
    - West region accounts for ~31.6% of all sales and ~37.9% of profits.  
-   - California alone drives ~8% of total orders; monitor logistics capacity out West.
+   - California alone drives ~8% of total orders.
+   - **South region** lags behind in revenue but maintains average profit margins.
+   - **Central region** shows weak profit generation and even negative margins in some segments.
 
-3. **Category Misalignment**  
-   - Although **Furniture** is ~32% of revenue, it contributes only ~6.4% of profit (low margin).  
-   - Conversely, **Technology** and **Office Supplies** each deliver ~17% average margin.  
-   - Potential to deprioritize low‐margin Furniture SKUs or renegotiate supplier terms.
+3. **Product-Level Insights**  
+   - **Furniture** yields low returns (2.5% margin), with high discounts and negative profit from sub-categories like Tables.  
+   - Conversely, **Technology** and **Office Supplies** are top contributors to profit with high ROI, each deliver ~17% average margin.  
 
-4. **Customer Concentration Risk**  
-   - **Sean Miller**’s account is top volume but at a net loss (–\$1,980).  
-   - Avoid over‐servicing discount‐hungry accounts; encourage them to shift toward higher‐margin lines.  
-   - The top 10 customers (by revenue) account for ~6.8% of total revenue; diversify marketing to avoid over‐reliance.
+4. **Customer Analysis**  
+   - **Sean Miller** is the highest-revenue customer but unprofitable (net loss: –$1,980).
+   - **Tamara Chand** offers a model profile: high revenue and high margin (47% profit rate).
+   - The **top 20% of customers** generate **48.2%** of total revenue.
 
 5. **Staff Productivity**  
-   - Top 5 sales reps each produce \$120 K–\$136 K in revenue over four years.  
-   - “Organic” sales teams (led by Manager X) outperform “Inorganic,” but headcount is uneven.  
-   - Best practices from high‐performing reps can be documented and shared.
+   - The **Organic team** delivers 60% of sales and dominates profitability.
+   - **Stella Given** achieved the highest sales growth (+387%) over four years.
+   - Top-performing reps are clustered in the West and East regions.
 
 6. **Shipping Duration Impacts Profit**  
-   - Orders shipped in ≤ 3 days yield ~14.2% margin vs. ~12.5% for > 5 days.  
+   - Orders shipped in ≤ 3 days yield ~14.2% margin vs. ~12.5% for > 5 days.
+   - **Standard Class** has the slowest delivery times (~5.4 days).
    - Suggests optimizing logistics and negotiating better freight rates for slower shipments (especially Furniture).
 
 7. **Seasonality Obvious**  
    - October / November is the busiest season (holiday ordering).  
    - Consider early fall promotions to push orders into October, capturing higher‐value spend.
 
+8. **Discount Strategy**
+   - **Furniture** is over-discounted and under-profitable.
+   - Weak **negative correlation** between discount and profit (–0.22); no clear link to increased sales.
+   - Suggests discounting is hurting margins more than it's helping volume.
+
+9. Concentration of Sales & Products
+   - Top 20% of customers account for ~48% of revenue; top 20% of products drive ~77% of sales, revealing both customer and SKU concentration risks and opportunities     
 ---
 
 ## ✅ Recommendations
 1. **Reevaluate Furniture Product Strategy**  
    - Renegotiate with furniture vendors to secure better COGS (cost of goods sold).  
    - Introduce adjustable freight fees (or pass through shipping surcharges) to protect margins.  
-   - Bundle low‐margin furniture items with higher‐margin accessories or tech add-ons.
+   - Focus marketing and cross-sell efforts away from loss-leader items.
 
-2. **Double Down on Technology & Office Supplies**  
+2. **Scale High-ROI Product Lines**  
    - Invest in targeted marketing campaigns for Phones, Office Machines, and Accessories.  
-   - Offer volume discounts for high‐margin SKUs to encourage larger basket sizes.  
-   - Explore cross‐sell opportunities (e.g., tech purchase = 10% off on toner/office supplies).
+   - Prioritize **Technology** and **Office Supplies** (especially sub-categories like Labels, Paper, Phones).
+   - Encourage bundling of high-margin items in promotions.
 
-3. **Customer Profitability Audits**  
-   - Flag loss‐making accounts (like Sean Miller) and reassign them to a dedicated “High‐Cost” support workflow:  
-     - Charge restocking/return fees where warranted.  
-     - Encourage migration to higher‐margin lines via loyalty incentives.  
+3. **Target High-Value Customers**   
    - For top‐profiting customers (e.g., Tamara Chand), provide premium support, priority shipping, and loyalty rewards to sustain growth.
+   - Build loyalty programs and offer tailored promotions to top 20% customers.
+   - Investigate why high-revenue customers like Sean Miller are yielding losses.
 
-4. **Optimize Logistics**  
-   - Target average “shipping days” ≤ 3 across all categories where feasible.  
+4. **Improve Shipping Efficiency**  
+   - Promote **First Class or Same Day** shipping for premium segments or high-ticket items. 
    - For slow‐moving lines (Furniture, Bookcases), evaluate alternate carriers or local warehousing for faster last‐mile delivery.  
-   - Implement a “ship by” guarantee to reduce late‐shipment penalties.
+   - Partner with logistics providers to reduce lead time and optimize freight for Furniture.
 
-5. **Seasonal Promotions**  
+5. **Optimize Regional Operations**
+   - Expand in **West and East**, which show the highest returns.
+   - Reassess **Central region** operations; explore root causes of sustained low/negative profitability.
+
+6. **Rationalize Discounting**
+   - Shift from blanket discounts to **data-driven promotions** focused on seasonality or stock turnover.
+   - Monitor and limit discounts that erode profit, especially on already low-margin categories.
+
+7. **Seasonal Promotions**  
    - Pre‐holiday flash sales in September to stimulate early orders.  
    - Create “bundle deals” around October / November when customer willingness to spend is highest.  
    - Use email and social media campaigns to drive traffic during historically low months (July / August).
 
-6. **Empower Sales Reps & Teams**  
-   - Document best practices from the top 3 reps (e.g., email templates, outreach scripts).  
+8. **Empower Sales Reps & Teams**  
+   - Document best practices from the top 3 reps (e.g., email templates, outreach scripts, client engagement).  
    - Introduce a quarterly “Sales Champion” program with performance‐based bonuses.  
    - Provide regular training on cross‐selling high‐margin items and avoiding discount overuse.
+
+9. **Address Concentration Risk**
+   - Diversify customer base by identifying mid-tier accounts and upselling them on high-ROI products.
+   - Expand SKU portfolio judiciously: introduce complementary high-margin items to mitigate reliance on the top 20% of products.
 ---
 
 ## ⚠️ Limitations
 1. **Timeframe Restricted to 2014–2017**  
    - No data beyond 2017 → unable to assess post-2017 trends, market shifts, or impacts of new competitors.  
 
-2. **Geographic Granularity Limited to State Level**  
-   - While we have city‐level fields, the map analyses focus on states and regions. More granular ZIP‐ or DMA‐level insight (customer clustering) is possible but not covered here.
+2. **Lack of External Factors**: No integration of economic or seasonal variables 
 
 3. **No Customer Transaction Cost Data**  
    - We lack direct COGS per product line; profit is only “Revenue – Sales Return – Discount” but does not account for warehousing or marketing spend.  
    - True net margins (after overhead, marketing, storage fees) would be lower.
 
-4. **Single Data Source (Excel)**  
-   - No cross‐referencing with external BI tools or ERP logs.  
-   - Returns data (if any) are embedded in negative‐profit line items but not separately tracked.
-
-5. **Staff Details Only at Rep/Team Level**  
-   - We do not have granular “hours worked,” “call logs,” or “lead source” details to fully analyze rep productivity.
-     
-6. **Lack of External Factors**: No integration of economic or seasonal variables
-
-7. **Missing Customer Feedback**: No sentiment data or customer satisfaction metrics
+4. **Missing Customer Feedback**: No sentiment data or customer satisfaction metrics
 
 ---
 
