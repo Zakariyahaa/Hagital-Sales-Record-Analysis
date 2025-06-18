@@ -647,7 +647,7 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
       * **California (CA)** ==> highest‐revenue state ($457.7 K sales, $76.4 K profit).
       * **New York City** ==> highest‐revenue city ($256.4 K sales, $62 K profit).
 
-15. **How do sales and profit differ by region (e.g., East, West, Central, South)?**
+14. **How do sales and profit differ by region (e.g., East, West, Central, South)?**
        > **Answer already shown in Question 1**.
        > For convenience:
       #### SQLQuery:
@@ -666,7 +666,7 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
       #### Conclusion: 
       West ≫ East ≫ Central ≫ South (in that order, by both sales and profits).
 
-16. **Are there specific locations where certain product categories sell more?**
+15. **Are there specific locations where certain product categories sell more?**
        #### SQLQuery:
        ```SQL
          -- 15. Category Popularity by Location
@@ -691,7 +691,7 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
       * **Furniture** has some of its largest pockets in IL and OH (even though overall Furniture is low-margin, certain states buy more).
    ---
 ### Order and Product Analysis
-17. **What is the average time between order date and ship date?**
+16. **What is the average time between order date and ship date?**
       #### SQLQuery:
       ```sql
          -- 16. Average Time Between Order and Ship Date
@@ -703,7 +703,7 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
       * **Average Shipping Days (All Orders)**: **3.9 days**
       * **Conclusion**: On average, it takes about **4 days** from the order date to the shipment date.
 
-18. **Which products have the highest sales volume and profitability?**
+17. **Which products have the highest sales volume and profitability?**
 
       #### SQLQuery:
       ```sql
@@ -726,7 +726,7 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
       1. The most‐sold item in raw dollar terms is the **Canon imageCLASS 2200 Advanced Copier** ($61.5 K Sales, $25.1 K Profit).
       2. **Fellowes PB500 Electric Punch Plastic Comb Binding Machine with Manual Bind** follow closely ($27.5 K Sales, $7.8 K Profit)
 
-19. **Are there any product categories with consistently high returns on investment?**
+18. **Are there any product categories with consistently high returns on investment?**
 
       #### SQLQuery:
       ```SQL
@@ -744,7 +744,7 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
 ---
 
 ### Trends and Comparisons
-20. **How do sales and profits compare month by month across the years?**
+19. **How do sales and profits compare month by month across the years?**
       #### SQLQuery:
       ```sql
          -- 19. Monthly Sales and Profit Trends
@@ -782,7 +782,7 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
         1. **Holiday Peak (Oct/Nov/Dec)**: Strong upward trend, with a big jump in Q4 of each year.
         2. **Summer Lows (July/August)**: A smaller, steadily rising “summer lull,” but the lift from July → December is pronounced.
 
-21. **What is the seasonal sales pattern for the different product categories?**
+20. **What is the seasonal sales pattern for the different product categories?**
       #### SQLQuery:
       ```sql
          -- 20. Seasonal Sales by Category
@@ -818,7 +818,7 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
       1. **Technology**: Peaks in October/November/December (holiday gift season). Lows in July/August.
       2. **Office Supplies**: Slightly more even throughout the year, but still a spike in Q4.
   
-22. **Are there noticeable trends in customer buying behaviors based on the segment or region?**
+21. **Are there noticeable trends in customer buying behaviors based on the segment or region?**
       #### SQLQuery:
       ```sql
          -- 21. Segment Buying Patterns
@@ -859,7 +859,7 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
       4. **Regionally**, West & East both grew year after year in profitability and sales respectively. Central grew in profitability until 2016, then flattened. South jumped in 2016 but dipped in profitability in 2017 despite huge sales.
 ---
 ### Advanced Insights
-23. **What percentage of total sales is contributed by the top 20% of customers or products?**
+22. **What percentage of total sales is contributed by the top 20% of customers or products?**
       #### SQLQuery:
       ```sql
          -- 22. Top 20% Customers and Product Sales Contribution
@@ -907,7 +907,7 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
       #### Result, Products:
       * **Top 20% of products** generated **76.9%** of overall sales.
 
-24. **Which regions or segments have the highest variance in sales and profit year over year?**
+23. **Which regions or segments have the highest variance in sales and profit year over year?**
       #### SQLQuery:
       ```SQL
       -- 23. Region/Segment Sales and Profit Variance Year over Year
@@ -968,36 +968,36 @@ The analysis focused on key metrics and trends, leveraging the Power BI report v
         2. Among segments, **Corporate** shows the greatest variance.
         3. **Home Office** also has notable variance.
 
-25. **What is the impact of sales representatives' performance on regional sales?**
-   #### SQLQuery:
-   ```sql
-      -- 24. Sales Rep Impact on Regional Sales (Top 3 by region)
-   SELECT 
-   	region, 
-   	sales_rep, 
-   	total_sales, 
-   	total_profit
-   FROM (
-       SELECT 
-           region, 
-           sales_rep, 
-           SUM(sales) AS total_sales,
-           SUM(profit) AS total_profit,
-           ROW_NUMBER() OVER (PARTITION BY region ORDER BY SUM(sales) DESC) AS rn
-       FROM sales_record
-       GROUP BY region, sales_rep
-   ) ranked
-   WHERE rn <= 3
-   ORDER BY region, total_sales DESC;
-   ```
+24. **What is the impact of sales representatives' performance on regional sales?**
+      #### SQLQuery:
+      ```sql
+         -- 24. Sales Rep Impact on Regional Sales (Top 3 by region)
+      SELECT 
+      	region, 
+      	sales_rep, 
+      	total_sales, 
+      	total_profit
+      FROM (
+          SELECT 
+              region, 
+              sales_rep, 
+              SUM(sales) AS total_sales,
+              SUM(profit) AS total_profit,
+              ROW_NUMBER() OVER (PARTITION BY region ORDER BY SUM(sales) DESC) AS rn
+          FROM sales_record
+          GROUP BY region, sales_rep
+      ) ranked
+      WHERE rn <= 3
+      ORDER BY region, total_sales DESC;
+      ```
+      
+      #### Top 3 Reps by Region:
+      ![image](https://github.com/user-attachments/assets/a9914e08-b996-44fa-b80d-5e92c30f60d0)
    
-   #### Top 3 Reps by Region:
-   ![image](https://github.com/user-attachments/assets/a9914e08-b996-44fa-b80d-5e92c30f60d0)
-
-   * **Impact**:
-     1. **Organic** consistently appear at the top across all regions.
-     2. **Stella Given** maintain second positions in the East and West regions.
-     3. Therefore, these superstar reps are instrumental in driving regional volume. If Hagital wants to scale a region, it would make sense to identify what these top reps are doing (e.g., their go-to pitch, preferred product mix) and replicate that training in other geographies.
+      * **Impact**:
+        1. **Organic** consistently appear at the top across all regions.
+        2. **Stella Given** maintain second positions in the East and West regions.
+        3. Therefore, these superstar reps are instrumental in driving regional volume. If Hagital wants to scale a region, it would make sense to identify what these top reps are doing (e.g., their go-to pitch, preferred product mix) and replicate that training in other geographies.
 
 25. **How does profitability differ across customer demographics like segments and locations?**
       #### SQLQuery:
