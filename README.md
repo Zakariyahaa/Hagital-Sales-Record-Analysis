@@ -1,4 +1,4 @@
-# **Hagital Store Sales Record Analysis (Capstone Project)**
+# **Hagital Store Sales Record Analysis**
 ---
 ## 📑 Table of Contents
 
@@ -159,7 +159,7 @@ EDA was conducted to understand the dataset's structure and identify key trends 
 | 2017 | $733,215.26  | $93,439.27  | 1,687         |
 
 - **Revenue Growth**:  
-  - 2014 → 2015 saw a slight dip (–$13,714), but 2015 → 2016 jumped by +$138,673 (+29.5%), and 2016 ==> 2017 grew by +$124,010 (+20.3%).  
+  - 2014 ==> 2015 saw a slight dip (–$13,714), but 2015 ==> 2016 jumped by +$138,673 (+29.5%), and 2016 ==> 2017 grew by +$124,010 (+20.3%).  
 - **Profit Growth**:  
   - Profit climbed steadily each year, from $49.5 K in 2014 to $93.4 K in 2017 — a net +88.7%.  
 - **Orders Growth**:  
